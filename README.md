@@ -15,6 +15,6 @@ $ npm run build
 Import directly into Insomnia, via `Workspace` :arrow_right: `Import/Export` :arrow_right: `Import Data` :arrow_right: `From URL` and entering **`https://raw.githubusercontent.com/saturninoabril/mattermost-openapi-insomnia/master/dist/mattermost_openapi_v4_insomnia.json`**:
 
 ## Modify [base environment](https://support.insomnia.rest/article/18-environment-variables):
-- `mattermost_token`: Add your token to authorize access to routes.
+- `mattermost_token`: Add your personal access or session token to authorize access to routes.  See [documention](https://docs.mattermost.com/developer/personal-access-tokens.html) on how to create personal access token.
 - `mattermost_api_root`: Set by default to `http://localhost:8065/api/v4` but can also change to remotely access your Mattermost instance.
-- modify other parameters as needed in base environment
+- modify other parameters/environment variable as needed.

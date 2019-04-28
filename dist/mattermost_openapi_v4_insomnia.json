@@ -1,14 +1,14 @@
 {
   "_type": "export",
   "__export_format": 3,
-  "__export_date": "2019-04-28T09:22:37.894Z",
+  "__export_date": "2019-04-28T21:49:27.206Z",
   "__export_source": "mattermost-openapi-insomnia:1.0.0",
   "resources": [
     {
       "parentId": "__WORKSPACE_ID__",
       "_id": "__FLD_1__",
       "_type": "request_group",
-      "name": "Mattermost REST v4 API"
+      "name": "Mattermost REST v4 API (1.0.0)"
     },
     {
       "parentId": "__WORKSPACE_ID__",
@@ -213,7 +213,7 @@
       "_id": "__REQ_0__",
       "_type": "request",
       "name": "Create a user",
-      "description": "Create a new user on the system. Password is required for email login. For other authentication types such as LDAP or SAML, auth_data and auth_service fields are required.\n##### Permissions\nNo permission required but user creation can be controlled by server configuration.\n",
+      "description": "Create a new user on the system. Password is required for email login. For other authentication types such as LDAP or SAML, auth_data and auth_service fields are required.\n##### Permissions\nNo permission required but user creation can be controlled by server configuration.\n\n##### Code Samples\n```go\nimport \"github.com/mattermost/mattermost-server/model\"\n\nClient := model.NewAPIv4Client(\"https://your-mattermost-url.com\")\n\nuser := &model.User{\n    Username: \"username\",\n    Email: \"email@domain.com\",\n    Password: \"Password1\",\n}\n\ncreatedUser, response := Client.CreateUser(user)\n\n```\n",
       "authentication": {
         "token": "{{ mattermost_token }}",
         "type": "bearer"
@@ -233,7 +233,7 @@
       "_id": "__REQ_1__",
       "_type": "request",
       "name": "Get users",
-      "description": "Get a page of a list of users. Based on query string parameters, select users from a team, channel, or select users not in a specific channel.\n\nSince server version 4.0, some basic sorting is available using the `sort` query parameter. Sorting is currently only supported when selecting users on a team.\n##### Permissions\nRequires an active session and (if specified) membership to the channel or team being selected from.\n",
+      "description": "Get a page of a list of users. Based on query string parameters, select users from a team, channel, or select users not in a specific channel.\n\nSince server version 4.0, some basic sorting is available using the `sort` query parameter. Sorting is currently only supported when selecting users on a team.\n##### Permissions\nRequires an active session and (if specified) membership to the channel or team being selected from.\n\n##### Code Samples\n```go\nimport \"github.com/mattermost/mattermost-server/model\"\n\nClient := model.NewAPIv4Client(\"https://your-mattermost-url.com\")\nClient.Login(\"email@domain.com\", \"Password1\")\n\n\n// page, perPage, etag\nusers := Client.GetUsers(0, 60, \"\")\nusers = Client.GetUsersInChannel(\"channelid\", 0, 60, \"\")\nusers = Client.GetUsersNotInChannel(\"teamid\", \"channelid\", 0, 60, \"\")\nusers = Client.GetUsersInTeam(\"teamid\", 0, 60, \"\")\nusers = Client.GetUsersNotInTeam(\"teamid\", 0, 60, \"\")\nusers = Client.GetUsersWithoutTeam(0, 60, \"\")\n\n```\n",
       "authentication": {
         "token": "{{ mattermost_token }}",
         "type": "bearer"
@@ -250,7 +250,7 @@
       "_id": "__REQ_2__",
       "_type": "request",
       "name": "Get users by ids",
-      "description": "Get a list of users based on a provided list of user ids.\n##### Permissions\nRequires an active session but no other permissions.\n",
+      "description": "Get a list of users based on a provided list of user ids.\n##### Permissions\nRequires an active session but no other permissions.\n\n",
       "authentication": {
         "token": "{{ mattermost_token }}",
         "type": "bearer"
@@ -267,7 +267,7 @@
       "_id": "__REQ_3__",
       "_type": "request",
       "name": "Get users by usernames",
-      "description": "Get a list of users based on a provided list of usernames.\n##### Permissions\nRequires an active session but no other permissions.\n",
+      "description": "Get a list of users based on a provided list of usernames.\n##### Permissions\nRequires an active session but no other permissions.\n\n",
       "authentication": {
         "token": "{{ mattermost_token }}",
         "type": "bearer"
@@ -284,7 +284,7 @@
       "_id": "__REQ_4__",
       "_type": "request",
       "name": "Search users",
-      "description": "Get a list of users based on search criteria provided in the request body. Searches are typically done against username, full name, nickname and email unless otherwise configured by the server.\n##### Permissions\nRequires an active session and `read_channel` and/or `view_team` permissions for any channels or teams specified in the request body.\n",
+      "description": "Get a list of users based on search criteria provided in the request body. Searches are typically done against username, full name, nickname and email unless otherwise configured by the server.\n##### Permissions\nRequires an active session and `read_channel` and/or `view_team` permissions for any channels or teams specified in the request body.\n\n",
       "authentication": {
         "token": "{{ mattermost_token }}",
         "type": "bearer"
@@ -304,7 +304,7 @@
       "_id": "__REQ_5__",
       "_type": "request",
       "name": "Autocomplete users",
-      "description": "Get a list of users for the purpose of autocompleting based on the provided search term. Specify a combination of `team_id` and `channel_id` to filter results further.\n##### Permissions\nRequires an active session and `view_team` and `read_channel` on any teams or channels used to filter the results further.\n",
+      "description": "Get a list of users for the purpose of autocompleting based on the provided search term. Specify a combination of `team_id` and `channel_id` to filter results further.\n##### Permissions\nRequires an active session and `view_team` and `read_channel` on any teams or channels used to filter the results further.\n\n",
       "authentication": {
         "token": "{{ mattermost_token }}",
         "type": "bearer"
@@ -321,7 +321,7 @@
       "_id": "__REQ_6__",
       "_type": "request",
       "name": "Get total count of users in the system",
-      "description": "Get a total count of users in the system.\n",
+      "description": "Get a total count of users in the system.\n\n",
       "authentication": {
         "token": "{{ mattermost_token }}",
         "type": "bearer"
@@ -338,7 +338,7 @@
       "_id": "__REQ_7__",
       "_type": "request",
       "name": "Get a user",
-      "description": "Get a user a object. Sensitive information will be sanitized out.\n##### Permissions\nRequires an active session but no other permissions.\n",
+      "description": "Get a user a object. Sensitive information will be sanitized out.\n##### Permissions\nRequires an active session but no other permissions.\n\n",
       "authentication": {
         "token": "{{ mattermost_token }}",
         "type": "bearer"
@@ -355,7 +355,7 @@
       "_id": "__REQ_8__",
       "_type": "request",
       "name": "Update a user",
-      "description": "Update a user by providing the user object. The fields that can be updated are defined in the request body, all other provided fields will be ignored. Any fields not included in the request body will be set to null or reverted to default values. \n##### Permissions\nMust be logged in as the user being updated or have the `edit_other_users` permission.\n",
+      "description": "Update a user by providing the user object. The fields that can be updated are defined in the request body, all other provided fields will be ignored. Any fields not included in the request body will be set to null or reverted to default values. \n##### Permissions\nMust be logged in as the user being updated or have the `edit_other_users` permission.\n\n",
       "authentication": {
         "token": "{{ mattermost_token }}",
         "type": "bearer"
@@ -375,7 +375,7 @@
       "_id": "__REQ_9__",
       "_type": "request",
       "name": "Deactivate a user account.",
-      "description": "Deactivates the user and revokes all its sessions by archiving its user object.\n##### Permissions\nMust be logged in as the user being deactivated or have the `edit_other_users` permission.\n",
+      "description": "Deactivates the user and revokes all its sessions by archiving its user object.\n##### Permissions\nMust be logged in as the user being deactivated or have the `edit_other_users` permission.\n\n",
       "authentication": {
         "token": "{{ mattermost_token }}",
         "type": "bearer"
@@ -392,7 +392,7 @@
       "_id": "__REQ_10__",
       "_type": "request",
       "name": "Patch a user",
-      "description": "Partially update a user by providing only the fields you want to update. Omitted fields will not be updated. The fields that can be updated are defined in the request body, all other provided fields will be ignored.\n##### Permissions\nMust be logged in as the user being updated or have the `edit_other_users` permission.\n",
+      "description": "Partially update a user by providing only the fields you want to update. Omitted fields will not be updated. The fields that can be updated are defined in the request body, all other provided fields will be ignored.\n##### Permissions\nMust be logged in as the user being updated or have the `edit_other_users` permission.\n\n",
       "authentication": {
         "token": "{{ mattermost_token }}",
         "type": "bearer"
@@ -409,7 +409,7 @@
       "_id": "__REQ_11__",
       "_type": "request",
       "name": "Update a user's roles",
-      "description": "Update a user's system-level roles. Valid user roles are \"system_user\", \"system_admin\" or both of them. Overwrites any previously assigned system-level roles.\n##### Permissions\nMust have the `manage_roles` permission.\n",
+      "description": "Update a user's system-level roles. Valid user roles are \"system_user\", \"system_admin\" or both of them. Overwrites any previously assigned system-level roles.\n##### Permissions\nMust have the `manage_roles` permission.\n\n",
       "authentication": {
         "token": "{{ mattermost_token }}",
         "type": "bearer"
@@ -426,7 +426,7 @@
       "_id": "__REQ_12__",
       "_type": "request",
       "name": "Update user active status",
-      "description": "Update user active or inactive status.\n\n__Since server version 4.6, users using a SSO provider to login can be activated or deactivated with this endpoint. However, if their activation status in Mattermost does not reflect their status in the SSO provider, the next synchronization or login by that user will reset the activation status to that of their account in the SSO provider. Server versions 4.5 and before do not allow activation or deactivation of SSO users from this endpoint.__\n##### Permissions\nUser can deactivate themselves.\nUser with `manage_system` permission can activate or deactivate a user.\n",
+      "description": "Update user active or inactive status.\n\n__Since server version 4.6, users using a SSO provider to login can be activated or deactivated with this endpoint. However, if their activation status in Mattermost does not reflect their status in the SSO provider, the next synchronization or login by that user will reset the activation status to that of their account in the SSO provider. Server versions 4.5 and before do not allow activation or deactivation of SSO users from this endpoint.__\n##### Permissions\nUser can deactivate themselves.\nUser with `manage_system` permission can activate or deactivate a user.\n\n",
       "authentication": {
         "token": "{{ mattermost_token }}",
         "type": "bearer"
@@ -446,7 +446,7 @@
       "_id": "__REQ_13__",
       "_type": "request",
       "name": "Get user's profile image",
-      "description": "Get a user's profile image based on user_id string parameter.\n##### Permissions\nMust be logged in.\n",
+      "description": "Get a user's profile image based on user_id string parameter.\n##### Permissions\nMust be logged in.\n\n",
       "authentication": {
         "token": "{{ mattermost_token }}",
         "type": "bearer"
@@ -463,7 +463,7 @@
       "_id": "__REQ_14__",
       "_type": "request",
       "name": "Set user's profile image",
-      "description": "Set a user's profile image based on user_id string parameter.\n##### Permissions\nMust be logged in as the user being updated or have the `edit_other_users` permission.\n",
+      "description": "Set a user's profile image based on user_id string parameter.\n##### Permissions\nMust be logged in as the user being updated or have the `edit_other_users` permission.\n\n",
       "authentication": {
         "token": "{{ mattermost_token }}",
         "type": "bearer"
@@ -480,7 +480,7 @@
       "_id": "__REQ_15__",
       "_type": "request",
       "name": "Delete user's profile image",
-      "description": "Delete user's profile image and reset to default image based on user_id string parameter.\n##### Permissions\nMust be logged in as the user being updated or have the `edit_other_users` permission.\n__Minimum server version__: 5.5\n",
+      "description": "Delete user's profile image and reset to default image based on user_id string parameter.\n##### Permissions\nMust be logged in as the user being updated or have the `edit_other_users` permission.\n__Minimum server version__: 5.5\n\n",
       "authentication": {
         "token": "{{ mattermost_token }}",
         "type": "bearer"
@@ -497,7 +497,7 @@
       "_id": "__REQ_16__",
       "_type": "request",
       "name": "Return user's default (generated) profile image",
-      "description": "Returns the default (generated) user profile image based on user_id string parameter.\n##### Permissions\nMust be logged in.\n__Minimum server version__: 5.5\n",
+      "description": "Returns the default (generated) user profile image based on user_id string parameter.\n##### Permissions\nMust be logged in.\n__Minimum server version__: 5.5\n\n",
       "authentication": {
         "token": "{{ mattermost_token }}",
         "type": "bearer"
@@ -514,7 +514,7 @@
       "_id": "__REQ_17__",
       "_type": "request",
       "name": "Get a user by username",
-      "description": "Get a user object by providing a username. Sensitive information will be sanitized out.\n##### Permissions\nRequires an active session but no other permissions.\n",
+      "description": "Get a user object by providing a username. Sensitive information will be sanitized out.\n##### Permissions\nRequires an active session but no other permissions.\n\n",
       "authentication": {
         "token": "{{ mattermost_token }}",
         "type": "bearer"
@@ -531,7 +531,7 @@
       "_id": "__REQ_18__",
       "_type": "request",
       "name": "Reset password",
-      "description": "Update the password for a user using a one-use, timed recovery code tied to the user's account. Only works for non-SSO users.\n##### Permissions\nNo permissions required.\n",
+      "description": "Update the password for a user using a one-use, timed recovery code tied to the user's account. Only works for non-SSO users.\n##### Permissions\nNo permissions required.\n\n",
       "authentication": {
         "token": "{{ mattermost_token }}",
         "type": "bearer"
@@ -551,7 +551,7 @@
       "_id": "__REQ_19__",
       "_type": "request",
       "name": "Update a user's MFA",
-      "description": "Activates multi-factor authentication for the user if `activate` is true and a valid `code` is provided. If activate is false, then `code` is not required and multi-factor authentication is disabled for the user.\n##### Permissions\nMust be logged in as the user being updated or have the `edit_other_users` permission.\n",
+      "description": "Activates multi-factor authentication for the user if `activate` is true and a valid `code` is provided. If activate is false, then `code` is not required and multi-factor authentication is disabled for the user.\n##### Permissions\nMust be logged in as the user being updated or have the `edit_other_users` permission.\n\n",
       "authentication": {
         "token": "{{ mattermost_token }}",
         "type": "bearer"
@@ -571,7 +571,7 @@
       "_id": "__REQ_20__",
       "_type": "request",
       "name": "Generate MFA secret",
-      "description": "Generates an multi-factor authentication secret for a user and returns it as a string and as base64 encoded QR code image.\n##### Permissions\nMust be logged in as the user or have the `edit_other_users` permission.\n",
+      "description": "Generates an multi-factor authentication secret for a user and returns it as a string and as base64 encoded QR code image.\n##### Permissions\nMust be logged in as the user or have the `edit_other_users` permission.\n\n",
       "authentication": {
         "token": "{{ mattermost_token }}",
         "type": "bearer"
@@ -588,7 +588,7 @@
       "_id": "__REQ_21__",
       "_type": "request",
       "name": "Check MFA",
-      "description": "Check if a user has multi-factor authentication active on their account by providing a login id. Used to check whether an MFA code needs to be provided when logging in.\n##### Permissions\nNo permission required.\n",
+      "description": "Check if a user has multi-factor authentication active on their account by providing a login id. Used to check whether an MFA code needs to be provided when logging in.\n##### Permissions\nNo permission required.\n\n",
       "authentication": {
         "token": "{{ mattermost_token }}",
         "type": "bearer"
@@ -608,7 +608,7 @@
       "_id": "__REQ_22__",
       "_type": "request",
       "name": "Update a user's password",
-      "description": "Update a user's password. New password must meet password policy set by server configuration. Current password is required if you're updating your own password.\n##### Permissions\nMust be logged in as the user the password is being changed for or have `manage_system` permission.\n",
+      "description": "Update a user's password. New password must meet password policy set by server configuration. Current password is required if you're updating your own password.\n##### Permissions\nMust be logged in as the user the password is being changed for or have `manage_system` permission.\n\n",
       "authentication": {
         "token": "{{ mattermost_token }}",
         "type": "bearer"
@@ -628,7 +628,7 @@
       "_id": "__REQ_23__",
       "_type": "request",
       "name": "Send password reset email",
-      "description": "Send an email containing a link for resetting the user's password. The link will contain a one-use, timed recovery code tied to the user's account. Only works for non-SSO users.\n##### Permissions\nNo permissions required.\n",
+      "description": "Send an email containing a link for resetting the user's password. The link will contain a one-use, timed recovery code tied to the user's account. Only works for non-SSO users.\n##### Permissions\nNo permissions required.\n\n",
       "authentication": {
         "token": "{{ mattermost_token }}",
         "type": "bearer"
@@ -648,7 +648,7 @@
       "_id": "__REQ_24__",
       "_type": "request",
       "name": "Get a user by email",
-      "description": "Get a user object by providing a user email. Sensitive information will be sanitized out.\n##### Permissions\nRequires an active session and for the current session to be able to view another user's email based on the server's privacy settings.\n",
+      "description": "Get a user object by providing a user email. Sensitive information will be sanitized out.\n##### Permissions\nRequires an active session and for the current session to be able to view another user's email based on the server's privacy settings.\n\n",
       "authentication": {
         "token": "{{ mattermost_token }}",
         "type": "bearer"
@@ -665,7 +665,7 @@
       "_id": "__REQ_25__",
       "_type": "request",
       "name": "Get user's sessions",
-      "description": "Get a list of sessions by providing the user GUID. Sensitive information will be sanitized out.\n##### Permissions\nMust be logged in as the user being updated or have the `edit_other_users` permission.\n",
+      "description": "Get a list of sessions by providing the user GUID. Sensitive information will be sanitized out.\n##### Permissions\nMust be logged in as the user being updated or have the `edit_other_users` permission.\n\n",
       "authentication": {
         "token": "{{ mattermost_token }}",
         "type": "bearer"
@@ -682,7 +682,7 @@
       "_id": "__REQ_26__",
       "_type": "request",
       "name": "Revoke a user session",
-      "description": "Revokes a user session from the provided user id and session id strings.\n##### Permissions\nMust be logged in as the user being updated or have the `edit_other_users` permission.\n",
+      "description": "Revokes a user session from the provided user id and session id strings.\n##### Permissions\nMust be logged in as the user being updated or have the `edit_other_users` permission.\n\n",
       "authentication": {
         "token": "{{ mattermost_token }}",
         "type": "bearer"
@@ -702,7 +702,7 @@
       "_id": "__REQ_27__",
       "_type": "request",
       "name": "Revoke all active sessions for a user",
-      "description": "Revokes all user sessions from the provided user id and session id strings.\n##### Permissions\nMust be logged in as the user being updated or have the `edit_other_users` permission.\n__Minimum server version__: 4.4\n",
+      "description": "Revokes all user sessions from the provided user id and session id strings.\n##### Permissions\nMust be logged in as the user being updated or have the `edit_other_users` permission.\n__Minimum server version__: 4.4\n\n",
       "authentication": {
         "token": "{{ mattermost_token }}",
         "type": "bearer"
@@ -719,7 +719,7 @@
       "_id": "__REQ_28__",
       "_type": "request",
       "name": "Attach mobile device",
-      "description": "Attach a mobile device id to the currently logged in session. This will enable push notifications for a user, if configured by the server.\n##### Permissions\nMust be authenticated.\n",
+      "description": "Attach a mobile device id to the currently logged in session. This will enable push notifications for a user, if configured by the server.\n##### Permissions\nMust be authenticated.\n\n",
       "authentication": {
         "token": "{{ mattermost_token }}",
         "type": "bearer"
@@ -739,7 +739,7 @@
       "_id": "__REQ_29__",
       "_type": "request",
       "name": "Get user's audits",
-      "description": "Get a list of audit by providing the user GUID.\n##### Permissions\nMust be logged in as the user or have the `edit_other_users` permission.\n",
+      "description": "Get a list of audit by providing the user GUID.\n##### Permissions\nMust be logged in as the user or have the `edit_other_users` permission.\n\n",
       "authentication": {
         "token": "{{ mattermost_token }}",
         "type": "bearer"
@@ -756,7 +756,7 @@
       "_id": "__REQ_30__",
       "_type": "request",
       "name": "Verify user email",
-      "description": "Verify the email used by a user to sign-up their account with.\n##### Permissions\nNo permissions required.\n",
+      "description": "Verify the email used by a user to sign-up their account with.\n##### Permissions\nNo permissions required.\n\n",
       "authentication": {
         "token": "{{ mattermost_token }}",
         "type": "bearer"
@@ -776,7 +776,7 @@
       "_id": "__REQ_31__",
       "_type": "request",
       "name": "Send verification email",
-      "description": "Send an email with a verification link to a user that has an email matching the one in the request body. This endpoint will return success even if the email does not match any users on the system.\n##### Permissions\nNo permissions required.\n",
+      "description": "Send an email with a verification link to a user that has an email matching the one in the request body. This endpoint will return success even if the email does not match any users on the system.\n##### Permissions\nNo permissions required.\n\n",
       "authentication": {
         "token": "{{ mattermost_token }}",
         "type": "bearer"
@@ -796,7 +796,7 @@
       "_id": "__REQ_32__",
       "_type": "request",
       "name": "Switch login method",
-      "description": "Switch a user's login method from using email to OAuth2/SAML/LDAP or back to email. When switching to OAuth2/SAML, account switching is not complete until the user follows the returned link and completes any steps on the OAuth2/SAML service provider.\n\nTo switch from email to OAuth2/SAML, specify `current_service`, `new_service`, `email` and `password`.\n\nTo switch from OAuth2/SAML to email, specify `current_service`, `new_service`, `email` and `new_password`.\n\nTo switch from email to LDAP/AD, specify `current_service`, `new_service`, `email`, `password`, `ldap_ip` and `new_password` (this is the user's LDAP password).\n\nTo switch from LDAP/AD to email, specify `current_service`, `new_service`, `ldap_ip`, `password` (this is the user's LDAP password), `email`  and `new_password`.\n\nAdditionally, specify `mfa_code` when trying to switch an account on LDAP/AD or email that has MFA activated.\n\n##### Permissions\nNo current authentication required except when switching from OAuth2/SAML to email.\n",
+      "description": "Switch a user's login method from using email to OAuth2/SAML/LDAP or back to email. When switching to OAuth2/SAML, account switching is not complete until the user follows the returned link and completes any steps on the OAuth2/SAML service provider.\n\nTo switch from email to OAuth2/SAML, specify `current_service`, `new_service`, `email` and `password`.\n\nTo switch from OAuth2/SAML to email, specify `current_service`, `new_service`, `email` and `new_password`.\n\nTo switch from email to LDAP/AD, specify `current_service`, `new_service`, `email`, `password`, `ldap_ip` and `new_password` (this is the user's LDAP password).\n\nTo switch from LDAP/AD to email, specify `current_service`, `new_service`, `ldap_ip`, `password` (this is the user's LDAP password), `email`  and `new_password`.\n\nAdditionally, specify `mfa_code` when trying to switch an account on LDAP/AD or email that has MFA activated.\n\n##### Permissions\nNo current authentication required except when switching from OAuth2/SAML to email.\n\n",
       "authentication": {
         "token": "{{ mattermost_token }}",
         "type": "bearer"
@@ -816,7 +816,7 @@
       "_id": "__REQ_33__",
       "_type": "request",
       "name": "Create a user access token",
-      "description": "Generate a user access token that can be used to authenticate with the Mattermost REST API.\n\n__Minimum server version__: 4.1\n\n##### Permissions\nMust have `create_user_access_token` permission. For non-self requests, must also have the `edit_other_users` permission.\n",
+      "description": "Generate a user access token that can be used to authenticate with the Mattermost REST API.\n\n__Minimum server version__: 4.1\n\n##### Permissions\nMust have `create_user_access_token` permission. For non-self requests, must also have the `edit_other_users` permission.\n\n",
       "authentication": {
         "token": "{{ mattermost_token }}",
         "type": "bearer"
@@ -833,7 +833,7 @@
       "_id": "__REQ_34__",
       "_type": "request",
       "name": "Get user access tokens",
-      "description": "Get a list of user access tokens for a user. Does not include the actual authentication tokens. Use query parameters for paging.\n\n__Minimum server version__: 4.1\n\n##### Permissions\nMust have `read_user_access_token` permission. For non-self requests, must also have the `edit_other_users` permission.\n",
+      "description": "Get a list of user access tokens for a user. Does not include the actual authentication tokens. Use query parameters for paging.\n\n__Minimum server version__: 4.1\n\n##### Permissions\nMust have `read_user_access_token` permission. For non-self requests, must also have the `edit_other_users` permission.\n\n",
       "authentication": {
         "token": "{{ mattermost_token }}",
         "type": "bearer"
@@ -850,7 +850,7 @@
       "_id": "__REQ_35__",
       "_type": "request",
       "name": "Get user access tokens",
-      "description": "Get a page of user access tokens for users on the system. Does not include the actual authentication tokens. Use query parameters for paging.\n\n__Minimum server version__: 4.7\n\n##### Permissions\nMust have `manage_system` permission.\n",
+      "description": "Get a page of user access tokens for users on the system. Does not include the actual authentication tokens. Use query parameters for paging.\n\n__Minimum server version__: 4.7\n\n##### Permissions\nMust have `manage_system` permission.\n\n",
       "authentication": {
         "token": "{{ mattermost_token }}",
         "type": "bearer"
@@ -867,7 +867,7 @@
       "_id": "__REQ_36__",
       "_type": "request",
       "name": "Revoke a user access token",
-      "description": "Revoke a user access token and delete any sessions using the token.\n\n__Minimum server version__: 4.1\n\n##### Permissions\nMust have `revoke_user_access_token` permission. For non-self requests, must also have the `edit_other_users` permission.\n",
+      "description": "Revoke a user access token and delete any sessions using the token.\n\n__Minimum server version__: 4.1\n\n##### Permissions\nMust have `revoke_user_access_token` permission. For non-self requests, must also have the `edit_other_users` permission.\n\n",
       "authentication": {
         "token": "{{ mattermost_token }}",
         "type": "bearer"
@@ -884,7 +884,7 @@
       "_id": "__REQ_37__",
       "_type": "request",
       "name": "Get a user access token",
-      "description": "Get a user access token. Does not include the actual authentication token.\n\n__Minimum server version__: 4.1\n\n##### Permissions\nMust have `read_user_access_token` permission. For non-self requests, must also have the `edit_other_users` permission.\n",
+      "description": "Get a user access token. Does not include the actual authentication token.\n\n__Minimum server version__: 4.1\n\n##### Permissions\nMust have `read_user_access_token` permission. For non-self requests, must also have the `edit_other_users` permission.\n\n",
       "authentication": {
         "token": "{{ mattermost_token }}",
         "type": "bearer"
@@ -901,7 +901,7 @@
       "_id": "__REQ_38__",
       "_type": "request",
       "name": "Disable personal access token",
-      "description": "Disable a personal access token and delete any sessions using the token. The token can be re-enabled using `/users/tokens/enable`.\n\n__Minimum server version__: 4.4\n\n##### Permissions\nMust have `revoke_user_access_token` permission. For non-self requests, must also have the `edit_other_users` permission.\n",
+      "description": "Disable a personal access token and delete any sessions using the token. The token can be re-enabled using `/users/tokens/enable`.\n\n__Minimum server version__: 4.4\n\n##### Permissions\nMust have `revoke_user_access_token` permission. For non-self requests, must also have the `edit_other_users` permission.\n\n",
       "authentication": {
         "token": "{{ mattermost_token }}",
         "type": "bearer"
@@ -918,7 +918,7 @@
       "_id": "__REQ_39__",
       "_type": "request",
       "name": "Enable personal access token",
-      "description": "Re-enable a personal access token that has been disabled.\n\n__Minimum server version__: 4.4\n\n##### Permissions\nMust have `create_user_access_token` permission. For non-self requests, must also have the `edit_other_users` permission.\n",
+      "description": "Re-enable a personal access token that has been disabled.\n\n__Minimum server version__: 4.4\n\n##### Permissions\nMust have `create_user_access_token` permission. For non-self requests, must also have the `edit_other_users` permission.\n\n",
       "authentication": {
         "token": "{{ mattermost_token }}",
         "type": "bearer"
@@ -935,7 +935,7 @@
       "_id": "__REQ_40__",
       "_type": "request",
       "name": "Search tokens",
-      "description": "Get a list of tokens based on search criteria provided in the request body. Searches are done against the token id, user id and username.\n\n__Minimum server version__: 4.7\n\n##### Permissions\nMust have `manage_system` permission.\n",
+      "description": "Get a list of tokens based on search criteria provided in the request body. Searches are done against the token id, user id and username.\n\n__Minimum server version__: 4.7\n\n##### Permissions\nMust have `manage_system` permission.\n\n",
       "authentication": {
         "token": "{{ mattermost_token }}",
         "type": "bearer"
@@ -955,7 +955,7 @@
       "_id": "__REQ_41__",
       "_type": "request",
       "name": "Update a user's authentication method",
-      "description": "Updates a user's authentication method. This can be used to change them to/from LDAP authentication for example.\n\n__Minimum server version__: 4.6\n##### Permissions\nMust have the `edit_other_users` permission.\n",
+      "description": "Updates a user's authentication method. This can be used to change them to/from LDAP authentication for example.\n\n__Minimum server version__: 4.6\n##### Permissions\nMust have the `edit_other_users` permission.\n\n",
       "authentication": {
         "token": "{{ mattermost_token }}",
         "type": "bearer"
@@ -972,7 +972,7 @@
       "_id": "__REQ_42__",
       "_type": "request",
       "name": "Records user action when they accept or decline custom terms of service",
-      "description": "Records user action when they accept or decline custom terms of service. Records the action in audit table.\nUpdates user's last accepted terms of service ID if they accepted it.\n\n__Minimum server version__: 5.4\n##### Permissions\nMust be logged in as the user being acted on.\n",
+      "description": "Records user action when they accept or decline custom terms of service. Records the action in audit table.\nUpdates user's last accepted terms of service ID if they accepted it.\n\n__Minimum server version__: 5.4\n##### Permissions\nMust be logged in as the user being acted on.\n\n",
       "authentication": {
         "token": "{{ mattermost_token }}",
         "type": "bearer"
@@ -992,7 +992,7 @@
       "_id": "__REQ_42__",
       "_type": "request",
       "name": "Records user action when they accept or decline custom terms of service",
-      "description": "Records user action when they accept or decline custom terms of service. Records the action in audit table.\nUpdates user's last accepted terms of service ID if they accepted it.\n\n__Minimum server version__: 5.4\n##### Permissions\nMust be logged in as the user being acted on.\n",
+      "description": "Records user action when they accept or decline custom terms of service. Records the action in audit table.\nUpdates user's last accepted terms of service ID if they accepted it.\n\n__Minimum server version__: 5.4\n##### Permissions\nMust be logged in as the user being acted on.\n\n",
       "authentication": {
         "token": "{{ mattermost_token }}",
         "type": "bearer"
@@ -1012,7 +1012,7 @@
       "_id": "__REQ_44__",
       "_type": "request",
       "name": "Fetches user's latest terms of service action if the latest action was for acceptance.",
-      "description": "Fetches user's latest terms of service action if the latest action was for acceptance.\n\n__Minimum server version__: 5.6\n##### Permissions\nMust be logged in as the user being acted on.\n",
+      "description": "Fetches user's latest terms of service action if the latest action was for acceptance.\n\n__Minimum server version__: 5.6\n##### Permissions\nMust be logged in as the user being acted on.\n\n",
       "authentication": {
         "token": "{{ mattermost_token }}",
         "type": "bearer"
@@ -1029,7 +1029,7 @@
       "_id": "__REQ_44__",
       "_type": "request",
       "name": "Fetches user's latest terms of service action if the latest action was for acceptance.",
-      "description": "Fetches user's latest terms of service action if the latest action was for acceptance.\n\n__Minimum server version__: 5.6\n##### Permissions\nMust be logged in as the user being acted on.\n",
+      "description": "Fetches user's latest terms of service action if the latest action was for acceptance.\n\n__Minimum server version__: 5.6\n##### Permissions\nMust be logged in as the user being acted on.\n\n",
       "authentication": {
         "token": "{{ mattermost_token }}",
         "type": "bearer"
@@ -1046,7 +1046,7 @@
       "_id": "__REQ_46__",
       "_type": "request",
       "name": "Get user status",
-      "description": "Get user status by id from the server.\n##### Permissions\nMust be authenticated.\n",
+      "description": "Get user status by id from the server.\n##### Permissions\nMust be authenticated.\n\n",
       "authentication": {
         "token": "{{ mattermost_token }}",
         "type": "bearer"
@@ -1063,7 +1063,7 @@
       "_id": "__REQ_47__",
       "_type": "request",
       "name": "Update user status",
-      "description": "Manually set a user's status. When setting a user's status, the status will remain that value until set \"online\" again, which will return the status to being automatically updated based on user activity.\n##### Permissions\nMust have `edit_other_users` permission for the team.\n",
+      "description": "Manually set a user's status. When setting a user's status, the status will remain that value until set \"online\" again, which will return the status to being automatically updated based on user activity.\n##### Permissions\nMust have `edit_other_users` permission for the team.\n\n",
       "authentication": {
         "token": "{{ mattermost_token }}",
         "type": "bearer"
@@ -1083,7 +1083,7 @@
       "_id": "__REQ_48__",
       "_type": "request",
       "name": "Get user statuses by id",
-      "description": "Get a list of user statuses by id from the server.\n##### Permissions\nMust be authenticated.\n",
+      "description": "Get a list of user statuses by id from the server.\n##### Permissions\nMust be authenticated.\n\n",
       "authentication": {
         "token": "{{ mattermost_token }}",
         "type": "bearer"
@@ -1100,7 +1100,7 @@
       "_id": "__REQ_49__",
       "_type": "request",
       "name": "Create a team",
-      "description": "Create a new team on the system.\n##### Permissions\nMust be authenticated and have the `create_team` permission.\n",
+      "description": "Create a new team on the system.\n##### Permissions\nMust be authenticated and have the `create_team` permission.\n\n",
       "authentication": {
         "token": "{{ mattermost_token }}",
         "type": "bearer"
@@ -1120,7 +1120,7 @@
       "_id": "__REQ_50__",
       "_type": "request",
       "name": "Get teams",
-      "description": "For regular users only returns open teams. Users with the \"manage_system\" permission will return teams regardless of type. The result is based on query string parameters - page and per_page.\n##### Permissions\nMust be authenticated. \"manage_system\" permission is required to show all teams.\n",
+      "description": "For regular users only returns open teams. Users with the \"manage_system\" permission will return teams regardless of type. The result is based on query string parameters - page and per_page.\n##### Permissions\nMust be authenticated. \"manage_system\" permission is required to show all teams.\n\n",
       "authentication": {
         "token": "{{ mattermost_token }}",
         "type": "bearer"
@@ -1137,7 +1137,7 @@
       "_id": "__REQ_51__",
       "_type": "request",
       "name": "Get a team",
-      "description": "Get a team on the system.\n##### Permissions\nMust be authenticated and have the `view_team` permission.\n",
+      "description": "Get a team on the system.\n##### Permissions\nMust be authenticated and have the `view_team` permission.\n\n",
       "authentication": {
         "token": "{{ mattermost_token }}",
         "type": "bearer"
@@ -1154,7 +1154,7 @@
       "_id": "__REQ_52__",
       "_type": "request",
       "name": "Update a team",
-      "description": "Update a team by providing the team object. The fields that can be updated are defined in the request body, all other provided fields will be ignored.\n##### Permissions\nMust have the `manage_team` permission.\n",
+      "description": "Update a team by providing the team object. The fields that can be updated are defined in the request body, all other provided fields will be ignored.\n##### Permissions\nMust have the `manage_team` permission.\n\n",
       "authentication": {
         "token": "{{ mattermost_token }}",
         "type": "bearer"
@@ -1174,7 +1174,7 @@
       "_id": "__REQ_53__",
       "_type": "request",
       "name": "Delete a team",
-      "description": "Soft deletes a team, by marking the team as deleted in the database. Soft deleted teams will not be accessible in the user interface.\n\nOptionally use the permanent query parameter to hard delete the team for compliance reasons. As of server version 5.0, to use this feature `ServiceSettings.EnableAPITeamDeletion` must be set to `true` in the server's configuration.\n##### Permissions\nMust have the `manage_team` permission.\n",
+      "description": "Soft deletes a team, by marking the team as deleted in the database. Soft deleted teams will not be accessible in the user interface.\n\nOptionally use the permanent query parameter to hard delete the team for compliance reasons. As of server version 5.0, to use this feature `ServiceSettings.EnableAPITeamDeletion` must be set to `true` in the server's configuration.\n##### Permissions\nMust have the `manage_team` permission.\n\n",
       "authentication": {
         "token": "{{ mattermost_token }}",
         "type": "bearer"
@@ -1191,7 +1191,7 @@
       "_id": "__REQ_54__",
       "_type": "request",
       "name": "Patch a team",
-      "description": "Partially update a team by providing only the fields you want to update. Omitted fields will not be updated. The fields that can be updated are defined in the request body, all other provided fields will be ignored.\n##### Permissions\nMust have the `manage_team` permission.\n",
+      "description": "Partially update a team by providing only the fields you want to update. Omitted fields will not be updated. The fields that can be updated are defined in the request body, all other provided fields will be ignored.\n##### Permissions\nMust have the `manage_team` permission.\n\n",
       "authentication": {
         "token": "{{ mattermost_token }}",
         "type": "bearer"
@@ -1208,7 +1208,7 @@
       "_id": "__REQ_55__",
       "_type": "request",
       "name": "Get a team by name",
-      "description": "Get a team based on provided name string\n##### Permissions\nMust be authenticated, team type is open and have the `view_team` permission.\n",
+      "description": "Get a team based on provided name string\n##### Permissions\nMust be authenticated, team type is open and have the `view_team` permission.\n\n",
       "authentication": {
         "token": "{{ mattermost_token }}",
         "type": "bearer"
@@ -1225,7 +1225,7 @@
       "_id": "__REQ_56__",
       "_type": "request",
       "name": "Search teams",
-      "description": "Search teams based on search term provided in the request body.\n##### Permissions\nLogged in user only shows open teams\nLogged in user with \"manage_system\" permission shows all teams\n",
+      "description": "Search teams based on search term provided in the request body.\n##### Permissions\nLogged in user only shows open teams\nLogged in user with \"manage_system\" permission shows all teams\n\n",
       "authentication": {
         "token": "{{ mattermost_token }}",
         "type": "bearer"
@@ -1245,7 +1245,7 @@
       "_id": "__REQ_57__",
       "_type": "request",
       "name": "Check if team exists",
-      "description": "Check if the team exists based on a team name.\n",
+      "description": "Check if the team exists based on a team name.\n\n",
       "authentication": {
         "token": "{{ mattermost_token }}",
         "type": "bearer"
@@ -1262,7 +1262,7 @@
       "_id": "__REQ_58__",
       "_type": "request",
       "name": "Get a user's teams",
-      "description": "Get a list of teams that a user is on.\n##### Permissions\nMust be authenticated as the user or have the `manage_system` permission.\n",
+      "description": "Get a list of teams that a user is on.\n##### Permissions\nMust be authenticated as the user or have the `manage_system` permission.\n\n",
       "authentication": {
         "token": "{{ mattermost_token }}",
         "type": "bearer"
@@ -1279,7 +1279,7 @@
       "_id": "__REQ_59__",
       "_type": "request",
       "name": "Get team members",
-      "description": "Get a page team members list based on query string parameters - team id, page and per page.\n##### Permissions\nMust be authenticated and have the `view_team` permission.\n",
+      "description": "Get a page team members list based on query string parameters - team id, page and per page.\n##### Permissions\nMust be authenticated and have the `view_team` permission.\n\n",
       "authentication": {
         "token": "{{ mattermost_token }}",
         "type": "bearer"
@@ -1296,7 +1296,7 @@
       "_id": "__REQ_60__",
       "_type": "request",
       "name": "Add user to team",
-      "description": "Add user to the team by user_id.\n##### Permissions\nMust be authenticated and team be open to add self. For adding another user, authenticated user must have the `add_user_to_team` permission.\n",
+      "description": "Add user to the team by user_id.\n##### Permissions\nMust be authenticated and team be open to add self. For adding another user, authenticated user must have the `add_user_to_team` permission.\n\n",
       "authentication": {
         "token": "{{ mattermost_token }}",
         "type": "bearer"
@@ -1313,7 +1313,7 @@
       "_id": "__REQ_61__",
       "_type": "request",
       "name": "Add user to team from invite",
-      "description": "Using either an invite id or hash/data pair from an email invite link, add a user to a team.\n##### Permissions\nMust be authenticated.\n",
+      "description": "Using either an invite id or hash/data pair from an email invite link, add a user to a team.\n##### Permissions\nMust be authenticated.\n\n",
       "authentication": {
         "token": "{{ mattermost_token }}",
         "type": "bearer"
@@ -1330,7 +1330,7 @@
       "_id": "__REQ_62__",
       "_type": "request",
       "name": "Add multiple users to team",
-      "description": "Add a number of users to the team by user_id.\n##### Permissions\nMust be authenticated. Authenticated user must have the `add_user_to_team` permission.\n",
+      "description": "Add a number of users to the team by user_id.\n##### Permissions\nMust be authenticated. Authenticated user must have the `add_user_to_team` permission.\n\n",
       "authentication": {
         "token": "{{ mattermost_token }}",
         "type": "bearer"
@@ -1347,7 +1347,7 @@
       "_id": "__REQ_63__",
       "_type": "request",
       "name": "Get team members for a user",
-      "description": "Get a list of team members for a user. Useful for getting the ids of teams the user is on and the roles they have in those teams.\n##### Permissions\nMust be logged in as the user or have the `edit_other_users` permission.\n",
+      "description": "Get a list of team members for a user. Useful for getting the ids of teams the user is on and the roles they have in those teams.\n##### Permissions\nMust be logged in as the user or have the `edit_other_users` permission.\n\n",
       "authentication": {
         "token": "{{ mattermost_token }}",
         "type": "bearer"
@@ -1364,7 +1364,7 @@
       "_id": "__REQ_64__",
       "_type": "request",
       "name": "Get a team member",
-      "description": "Get a team member on the system.\n##### Permissions\nMust be authenticated and have the `view_team` permission.\n",
+      "description": "Get a team member on the system.\n##### Permissions\nMust be authenticated and have the `view_team` permission.\n\n",
       "authentication": {
         "token": "{{ mattermost_token }}",
         "type": "bearer"
@@ -1381,7 +1381,7 @@
       "_id": "__REQ_65__",
       "_type": "request",
       "name": "Remove user from team",
-      "description": "Delete the team member object for a user, effectively removing them from a team.\n##### Permissions\nMust be logged in as the user or have the `remove_user_from_team` permission.\n",
+      "description": "Delete the team member object for a user, effectively removing them from a team.\n##### Permissions\nMust be logged in as the user or have the `remove_user_from_team` permission.\n\n",
       "authentication": {
         "token": "{{ mattermost_token }}",
         "type": "bearer"
@@ -1398,7 +1398,7 @@
       "_id": "__REQ_66__",
       "_type": "request",
       "name": "Get team members by ids",
-      "description": "Get a list of team members based on a provided array of user ids.\n##### Permissions\nMust have `view_team` permission for the team.\n",
+      "description": "Get a list of team members based on a provided array of user ids.\n##### Permissions\nMust have `view_team` permission for the team.\n\n",
       "authentication": {
         "token": "{{ mattermost_token }}",
         "type": "bearer"
@@ -1415,7 +1415,7 @@
       "_id": "__REQ_67__",
       "_type": "request",
       "name": "Get a team stats",
-      "description": "Get a team stats on the system.\n##### Permissions\nMust be authenticated and have the `view_team` permission.\n",
+      "description": "Get a team stats on the system.\n##### Permissions\nMust be authenticated and have the `view_team` permission.\n\n",
       "authentication": {
         "token": "{{ mattermost_token }}",
         "type": "bearer"
@@ -1432,7 +1432,7 @@
       "_id": "__REQ_68__",
       "_type": "request",
       "name": "Get the team icon",
-      "description": "Get the team icon of the team.\n\n__Minimum server version__: 4.9\n\n##### Permissions\nUser must be authenticated. In addition, team must be open or the user must have the `view_team` permission.\n",
+      "description": "Get the team icon of the team.\n\n__Minimum server version__: 4.9\n\n##### Permissions\nUser must be authenticated. In addition, team must be open or the user must have the `view_team` permission.\n\n",
       "authentication": {
         "token": "{{ mattermost_token }}",
         "type": "bearer"
@@ -1449,7 +1449,7 @@
       "_id": "__REQ_69__",
       "_type": "request",
       "name": "Sets the team icon",
-      "description": "Sets the team icon for the team.\n\n__Minimum server version__: 4.9\n\n##### Permissions\nMust be authenticated and have the `manage_team` permission.\n",
+      "description": "Sets the team icon for the team.\n\n__Minimum server version__: 4.9\n\n##### Permissions\nMust be authenticated and have the `manage_team` permission.\n\n",
       "authentication": {
         "token": "{{ mattermost_token }}",
         "type": "bearer"
@@ -1466,7 +1466,7 @@
       "_id": "__REQ_70__",
       "_type": "request",
       "name": "Remove the team icon",
-      "description": "Remove the team icon for the team.\n\n__Minimum server version__: 4.10\n\n##### Permissions\nMust be authenticated and have the `manage_team` permission.\n",
+      "description": "Remove the team icon for the team.\n\n__Minimum server version__: 4.10\n\n##### Permissions\nMust be authenticated and have the `manage_team` permission.\n\n",
       "authentication": {
         "token": "{{ mattermost_token }}",
         "type": "bearer"
@@ -1483,7 +1483,7 @@
       "_id": "__REQ_71__",
       "_type": "request",
       "name": "Update a team member roles",
-      "description": "Update a team member roles. Valid team roles are \"team_user\", \"team_admin\" or both of them. Overwrites any previously assigned team roles.\n##### Permissions\nMust be authenticated and have the `manage_team_roles` permission.\n",
+      "description": "Update a team member roles. Valid team roles are \"team_user\", \"team_admin\" or both of them. Overwrites any previously assigned team roles.\n##### Permissions\nMust be authenticated and have the `manage_team_roles` permission.\n\n",
       "authentication": {
         "token": "{{ mattermost_token }}",
         "type": "bearer"
@@ -1503,7 +1503,7 @@
       "_id": "__REQ_72__",
       "_type": "request",
       "name": "Update the scheme-derived roles of a team member.",
-      "description": "Update a team member's scheme_admin/scheme_user properties. Typically this should either be `scheme_admin=false, scheme_user=true` for ordinary team member, or `scheme_admin=true, scheme_user=true` for a team admin.\n\n__Minimum server version__: 5.0\n\n##### Permissions\nMust be authenticated and have the `manage_team_roles` permission.\n",
+      "description": "Update a team member's scheme_admin/scheme_user properties. Typically this should either be `scheme_admin=false, scheme_user=true` for ordinary team member, or `scheme_admin=true, scheme_user=true` for a team admin.\n\n__Minimum server version__: 5.0\n\n##### Permissions\nMust be authenticated and have the `manage_team_roles` permission.\n\n",
       "authentication": {
         "token": "{{ mattermost_token }}",
         "type": "bearer"
@@ -1523,7 +1523,7 @@
       "_id": "__REQ_73__",
       "_type": "request",
       "name": "Get team unreads for a user",
-      "description": "Get the count for unread messages and mentions in the teams the user is a member of.\n##### Permissions\nMust be logged in.\n",
+      "description": "Get the count for unread messages and mentions in the teams the user is a member of.\n##### Permissions\nMust be logged in.\n\n",
       "authentication": {
         "token": "{{ mattermost_token }}",
         "type": "bearer"
@@ -1540,7 +1540,7 @@
       "_id": "__REQ_74__",
       "_type": "request",
       "name": "Get unreads for a team",
-      "description": "Get the unread mention and message counts for a team for the specified user.\n##### Permissions\nMust be the user or have `edit_other_users` permission and have `view_team` permission for the team.\n",
+      "description": "Get the unread mention and message counts for a team for the specified user.\n##### Permissions\nMust be the user or have `edit_other_users` permission and have `view_team` permission for the team.\n\n",
       "authentication": {
         "token": "{{ mattermost_token }}",
         "type": "bearer"
@@ -1557,7 +1557,7 @@
       "_id": "__REQ_75__",
       "_type": "request",
       "name": "Invite users to the team by email",
-      "description": "Invite users to the existing team usign the user's email.\n##### Permissions\nMust have `invite_to_team` permission for the team.\n",
+      "description": "Invite users to the existing team usign the user's email.\n##### Permissions\nMust have `invite_to_team` permission for the team.\n\n",
       "authentication": {
         "token": "{{ mattermost_token }}",
         "type": "bearer"
@@ -1574,7 +1574,7 @@
       "_id": "__REQ_76__",
       "_type": "request",
       "name": "Import a Team from other application",
-      "description": "Import a team into a existing team. Import users, channels, posts, hooks.\n##### Permissions\nMust have `permission_import_team` permission.\n",
+      "description": "Import a team into a existing team. Import users, channels, posts, hooks.\n##### Permissions\nMust have `permission_import_team` permission.\n\n",
       "authentication": {
         "token": "{{ mattermost_token }}",
         "type": "bearer"
@@ -1591,7 +1591,7 @@
       "_id": "__REQ_77__",
       "_type": "request",
       "name": "Get invite info for a team",
-      "description": "Get the `name`, `display_name`, `description` and `id` for a team from the invite id.\n\n__Minimum server version__: 4.0\n\n##### Permissions\nNo authentication required.\n",
+      "description": "Get the `name`, `display_name`, `description` and `id` for a team from the invite id.\n\n__Minimum server version__: 4.0\n\n##### Permissions\nNo authentication required.\n\n",
       "authentication": {
         "token": "{{ mattermost_token }}",
         "type": "bearer"
@@ -1608,7 +1608,7 @@
       "_id": "__REQ_78__",
       "_type": "request",
       "name": "Set a team's scheme",
-      "description": "Set a team's scheme, more specifically sets the scheme_id value of a team record.\n\n##### Permissions\nMust have `manage_system` permission.\n\n__Minimum server version__: 5.0\n",
+      "description": "Set a team's scheme, more specifically sets the scheme_id value of a team record.\n\n##### Permissions\nMust have `manage_system` permission.\n\n__Minimum server version__: 5.0\n\n##### Code Samples\n```go\nimport \"github.com/mattermost/mattermost-server/model\"\n\nClient := model.NewAPIv4Client(\"https://your-mattermost-url.com\")\nClient.Login(\"email@domain.com\", \"Password1\")\n\nteamID := \"4xp9fdt77pncbef59f4k1qe83o\"\nschemeID := \"qjda3stwafbgpqjaxej3k76sga\"\n\nok, resp := UpdateTeamScheme(teamID, schemeID)\n\n```\n\n```bash\ncurl -X PUT \\\n  https://your-mattermost-url.com/api/v4/teams/4xp9fdt77pncbef59f4k1qe83o/scheme \\\n  -H 'Authorization: Bearer frn8fu5rtpyc5m4xy6q3oj4yur' \\\n  -H 'Content-Type: application/json' \\\n  -d '{\"scheme_id\": \"qjda3stwafbgpqjaxej3k76sga\"}'\n\n```\n",
       "authentication": {
         "token": "{{ mattermost_token }}",
         "type": "bearer"
@@ -1628,7 +1628,7 @@
       "_id": "__REQ_79__",
       "_type": "request",
       "name": "Create a channel",
-      "description": "Create a new channel.\n##### Permissions\nIf creating a public channel, `create_public_channel` permission is required. If creating a private channel, `create_private_channel` permission is required.\n",
+      "description": "Create a new channel.\n##### Permissions\nIf creating a public channel, `create_public_channel` permission is required. If creating a private channel, `create_private_channel` permission is required.\n\n##### Code Samples\n```go\nimport \"github.com/mattermost/mattermost-server/model\"\nClient := model.NewAPIv4Client(\"https://your-mattermost-url.com\")\nClient.Login(\"email@domain.com\", \"Password1\")\n\nchannel := &model.Channel{DisplayName: <YOUR CHANNEL DISPLAYNAME>, Name: <YOUR CHANNEL NAME>, Type: <CHANNEL TYPE OPEN/PRIVATE>, TeamId: <YOUR TEAM ID>}\n\n// CreateChannel\nrchannel, resp := Client.CreateChannel(channel)\n\n```\n",
       "authentication": {
         "token": "{{ mattermost_token }}",
         "type": "bearer"
@@ -1648,7 +1648,7 @@
       "_id": "__REQ_80__",
       "_type": "request",
       "name": "Create a direct message channel",
-      "description": "Create a new direct message channel between two users.\n##### Permissions\nMust be one of the two users and have `create_direct_channel` permission. Having the `manage_system` permission voids the previous requirements.\n",
+      "description": "Create a new direct message channel between two users.\n##### Permissions\nMust be one of the two users and have `create_direct_channel` permission. Having the `manage_system` permission voids the previous requirements.\n\n##### Code Samples\n```go\nimport \"github.com/mattermost/mattermost-server/model\"\nClient := model.NewAPIv4Client(\"https://your-mattermost-url.com\")\nClient.Login(\"email@domain.com\", \"Password1\")\n\n// CreateDirectChannel\ndm, resp := Client.CreateDirectChannel(<ID OF User1>, <ID OF User2>)\n\n```\n",
       "authentication": {
         "token": "{{ mattermost_token }}",
         "type": "bearer"
@@ -1665,7 +1665,7 @@
       "_id": "__REQ_81__",
       "_type": "request",
       "name": "Create a group message channel",
-      "description": "Create a new group message channel to group of users. If the logged in user's id is not included in the list, it will be appended to the end.\n##### Permissions\nMust have `create_group_channel` permission.\n",
+      "description": "Create a new group message channel to group of users. If the logged in user's id is not included in the list, it will be appended to the end.\n##### Permissions\nMust have `create_group_channel` permission.\n\n##### Code Samples\n```go\nimport \"github.com/mattermost/mattermost-server/model\"\nClient := model.NewAPIv4Client(\"https://your-mattermost-url.com\")\nClient.Login(\"email@domain.com\", \"Password1\")\n\nuserIds := []string{<ID OF User1>, <ID OF User2>, <ID OF User3> ...}\n\n// CreateGroupChannel\nrgc, resp := Client.CreateGroupChannel(userIds)\n\n```\n",
       "authentication": {
         "token": "{{ mattermost_token }}",
         "type": "bearer"
@@ -1682,7 +1682,7 @@
       "_id": "__REQ_82__",
       "_type": "request",
       "name": "Get a list of channels by ids",
-      "description": "Get a list of public channels on a team by id.\n##### Permissions\n`view_team` for the team the channels are on.\n",
+      "description": "Get a list of public channels on a team by id.\n##### Permissions\n`view_team` for the team the channels are on.\n\n##### Code Samples\n```go\nimport \"github.com/mattermost/mattermost-server/model\"\nClient := model.NewAPIv4Client(\"https://your-mattermost-url.com\")\nClient.Login(\"email@domain.com\", \"Password1\")\n\nchannelIds := []string{<ID OF CHANNEL1>, <ID OF CHANNEL2>, ...}\n\n// GetPublicChannelsByIdsForTeam\nchannels, resp := Client.GetPublicChannelsByIdsForTeam(<TEAMID>, channelIds)\n\n```\n",
       "authentication": {
         "token": "{{ mattermost_token }}",
         "type": "bearer"
@@ -1699,7 +1699,7 @@
       "_id": "__REQ_83__",
       "_type": "request",
       "name": "Get timezones in a channel",
-      "description": "Get a list of timezones for the users who are in this channel.\n\n__Minimum server version__: 5.6\n\n##### Permissions\nMust have the `read_channel` permission.\n",
+      "description": "Get a list of timezones for the users who are in this channel.\n\n__Minimum server version__: 5.6\n\n##### Permissions\nMust have the `read_channel` permission.\n\n##### Code Samples\n```go\nimport \"github.com/mattermost/mattermost-server/model\"\nClient := model.NewAPIv4Client(\"https://your-mattermost-url.com\")\nClient.Login(\"email@domain.com\", \"Password1\")\n\n// GetChannelStats\nstats, resp := Client.GetChannelTimezones(<CHANNELID>)\n\n```\n",
       "authentication": {
         "token": "{{ mattermost_token }}",
         "type": "bearer"
@@ -1716,7 +1716,7 @@
       "_id": "__REQ_84__",
       "_type": "request",
       "name": "Get a channel",
-      "description": "Get channel from the provided channel id string.\n##### Permissions\n`read_channel` permission for the channel.\n",
+      "description": "Get channel from the provided channel id string.\n##### Permissions\n`read_channel` permission for the channel.\n\n##### Code Samples\n```go\nimport \"github.com/mattermost/mattermost-server/model\"\nClient := model.NewAPIv4Client(\"https://your-mattermost-url.com\")\nClient.Login(\"email@domain.com\", \"Password1\")\n\n// GetChannel\nchannel, resp := Client.GetChannel(<CHANNELID>, \"\")\n\n```\n",
       "authentication": {
         "token": "{{ mattermost_token }}",
         "type": "bearer"
@@ -1733,7 +1733,7 @@
       "_id": "__REQ_85__",
       "_type": "request",
       "name": "Update a channel",
-      "description": "Update a channel. The fields that can be updated are listed as parameters. Omitted fields will be treated as blanks.\n##### Permissions\nIf updating a public channel, `manage_public_channel_members` permission is required. If updating a private channel, `manage_private_channel_members` permission is required.\n",
+      "description": "Update a channel. The fields that can be updated are listed as parameters. Omitted fields will be treated as blanks.\n##### Permissions\nIf updating a public channel, `manage_public_channel_members` permission is required. If updating a private channel, `manage_private_channel_members` permission is required.\n\n##### Code Samples\n```go\nimport \"github.com/mattermost/mattermost-server/model\"\nClient := model.NewAPIv4Client(\"https://your-mattermost-url.com\")\nClient.Login(\"email@domain.com\", \"Password1\")\n\nchannel := &model.Channel{DisplayName: <YOUR CHANNEL NEW DISPLAYNAME>, ChannelId: <CHANNELID>, TeamId: <YOUR TEAM ID>}\n\n// UpdateChannel\nupdatedChannel, resp := Client.UpdateChannel(channel)\n\n```\n",
       "authentication": {
         "token": "{{ mattermost_token }}",
         "type": "bearer"
@@ -1753,7 +1753,7 @@
       "_id": "__REQ_86__",
       "_type": "request",
       "name": "Delete a channel",
-      "description": "Soft deletes a channel, by marking the channel as deleted in the database. Soft deleted channels will not be accessible in the user interface. Direct and group message channels cannot be deleted.\n##### Permissions\n`delete_public_channel` permission if the channel is public,\n`delete_private_channel` permission if the channel is private,\nor have `manage_system` permission.\n",
+      "description": "Soft deletes a channel, by marking the channel as deleted in the database. Soft deleted channels will not be accessible in the user interface. Direct and group message channels cannot be deleted.\n##### Permissions\n`delete_public_channel` permission if the channel is public,\n`delete_private_channel` permission if the channel is private,\nor have `manage_system` permission.\n\n##### Code Samples\n```go\nimport \"github.com/mattermost/mattermost-server/model\"\nClient := model.NewAPIv4Client(\"https://your-mattermost-url.com\")\nClient.Login(\"email@domain.com\", \"Password1\")\n\n// DeleteChannel\npass, resp := Client.DeleteChannel(<CHANNELID>)\n\n```\n",
       "authentication": {
         "token": "{{ mattermost_token }}",
         "type": "bearer"
@@ -1770,7 +1770,7 @@
       "_id": "__REQ_87__",
       "_type": "request",
       "name": "Patch a channel",
-      "description": "Partially update a channel by providing only the fields you want to update. Omitted fields will not be updated. The fields that can be updated are defined in the request body, all other provided fields will be ignored.\n##### Permissions\nIf updating a public channel, `manage_public_channel_members` permission is required. If updating a private channel, `manage_private_channel_members` permission is required.\n",
+      "description": "Partially update a channel by providing only the fields you want to update. Omitted fields will not be updated. The fields that can be updated are defined in the request body, all other provided fields will be ignored.\n##### Permissions\nIf updating a public channel, `manage_public_channel_members` permission is required. If updating a private channel, `manage_private_channel_members` permission is required.\n\n##### Code Samples\n```go\nimport \"github.com/mattermost/mattermost-server/model\"\nClient := model.NewAPIv4Client(\"https://your-mattermost-url.com\")\nClient.Login(\"email@domain.com\", \"Password1\")\n\npatch := &model.ChannelPatch{\n  Name:        new(string),\n  DisplayName: new(string),\n  Header:      new(string),\n  Purpose:     new(string),\n}\n*patch.Name = \"<SOME_NEW_NAME>\"\n*patch.DisplayName = \"<SOME_NEW_DISPLAYNAME>\"\n*patch.Header = \"<SOME_NEW_HEADER>\"\n*patch.Purpose = \"<SOME_NEW_PURPOSE>\"\n\n// PatchChannel\nchannel, resp := Client.PatchChannel(<CHANNELID>, patch)\n\n```\n",
       "authentication": {
         "token": "{{ mattermost_token }}",
         "type": "bearer"
@@ -1787,7 +1787,7 @@
       "_id": "__REQ_88__",
       "_type": "request",
       "name": "Convert a channel from public to private",
-      "description": "Convert into private channel from the provided channel id string.\n\n__Minimum server version__: 4.10\n\n##### Permissions\n`manage_team` permission for the team of the channel.\n",
+      "description": "Convert into private channel from the provided channel id string.\n\n__Minimum server version__: 4.10\n\n##### Permissions\n`manage_team` permission for the team of the channel.\n\n##### Code Samples\n```go\nimport \"github.com/mattermost/mattermost-server/model\"\nClient := model.NewAPIv4Client(\"https://your-mattermost-url.com\")\nClient.Login(\"email@domain.com\", \"Password1\")\n\n// ConvertChannelToPrivate\nconvertedChannel, resp := Client.ConvertChannelToPrivate(<CHANNELID>)\n\n```\n",
       "authentication": {
         "token": "{{ mattermost_token }}",
         "type": "bearer"
@@ -1804,7 +1804,7 @@
       "_id": "__REQ_89__",
       "_type": "request",
       "name": "Restore a channel",
-      "description": "Restore channel from the provided channel id string.\n\n__Minimum server version__: 3.10\n\n##### Permissions\n`manage_team` permission for the team of the channel.\n",
+      "description": "Restore channel from the provided channel id string.\n\n__Minimum server version__: 3.10\n\n##### Permissions\n`manage_team` permission for the team of the channel.\n\n",
       "authentication": {
         "token": "{{ mattermost_token }}",
         "type": "bearer"
@@ -1821,7 +1821,7 @@
       "_id": "__REQ_90__",
       "_type": "request",
       "name": "Get channel statistics",
-      "description": "Get statistics for a channel.\n##### Permissions\nMust have the `read_channel` permission.\n",
+      "description": "Get statistics for a channel.\n##### Permissions\nMust have the `read_channel` permission.\n\n##### Code Samples\n```go\nimport \"github.com/mattermost/mattermost-server/model\"\nClient := model.NewAPIv4Client(\"https://your-mattermost-url.com\")\nClient.Login(\"email@domain.com\", \"Password1\")\n\n// GetChannelStats\nstats, resp := Client.GetChannelStats(<CHANNELID>)\n\n```\n",
       "authentication": {
         "token": "{{ mattermost_token }}",
         "type": "bearer"
@@ -1838,7 +1838,7 @@
       "_id": "__REQ_91__",
       "_type": "request",
       "name": "Get a channel's pinned posts",
-      "description": "Get a list of pinned posts for channel.",
+      "description": "Get a list of pinned posts for channel.\n##### Code Samples\n```go\nimport \"github.com/mattermost/mattermost-server/model\"\nClient := model.NewAPIv4Client(\"https://your-mattermost-url.com\")\nClient.Login(\"email@domain.com\", \"Password1\")\n\n// GetPinnedPosts\nposts, resp := Client.GetPinnedPosts(<CHANNELID>, \"\")\n\n```\n",
       "authentication": {
         "token": "{{ mattermost_token }}",
         "type": "bearer"
@@ -1855,7 +1855,7 @@
       "_id": "__REQ_92__",
       "_type": "request",
       "name": "Get public channels",
-      "description": "Get a page of public channels on a team based on query string parameters - page and per_page.\n##### Permissions\nMust be authenticated and have the `list_team_channels` permission.\n",
+      "description": "Get a page of public channels on a team based on query string parameters - page and per_page.\n##### Permissions\nMust be authenticated and have the `list_team_channels` permission.\n\n##### Code Samples\n```go\nimport \"github.com/mattermost/mattermost-server/model\"\nClient := model.NewAPIv4Client(\"https://your-mattermost-url.com\")\nClient.Login(\"email@domain.com\", \"Password1\")\n// GetPublicChannelsForTeam\nchannels, resp := Client.GetPublicChannelsForTeam(<TEAMID>, 0, 100, \"\")\n\n```\n",
       "authentication": {
         "token": "{{ mattermost_token }}",
         "type": "bearer"
@@ -1872,7 +1872,7 @@
       "_id": "__REQ_93__",
       "_type": "request",
       "name": "Get deleted channels",
-      "description": "Get a page of deleted channels on a team based on query string parameters - team_id, page and per_page.\n\n__Minimum server version__: 3.10\n\n##### Permissions\nMust be authenticated and have the `manage_team` permission.\n",
+      "description": "Get a page of deleted channels on a team based on query string parameters - team_id, page and per_page.\n\n__Minimum server version__: 3.10\n\n##### Permissions\nMust be authenticated and have the `manage_team` permission.\n\n",
       "authentication": {
         "token": "{{ mattermost_token }}",
         "type": "bearer"
@@ -1889,7 +1889,7 @@
       "_id": "__REQ_94__",
       "_type": "request",
       "name": "Autocomplete channels",
-      "description": "Autocomplete public channels on a team based on the search term provided in the request URL.\n\n__Minimum server version__: 4.7\n\n##### Permissions\nMust have the `list_team_channels` permission.\n",
+      "description": "Autocomplete public channels on a team based on the search term provided in the request URL.\n\n__Minimum server version__: 4.7\n\n##### Permissions\nMust have the `list_team_channels` permission.\n\n",
       "authentication": {
         "token": "{{ mattermost_token }}",
         "type": "bearer"
@@ -1906,7 +1906,7 @@
       "_id": "__REQ_95__",
       "_type": "request",
       "name": "Autocomplete channels for search",
-      "description": "Autocomplete your channels on a team based on the search term provided in the request URL.\n\n__Minimum server version__: 5.4\n\n##### Permissions\nMust have the `list_team_channels` permission.\n",
+      "description": "Autocomplete your channels on a team based on the search term provided in the request URL.\n\n__Minimum server version__: 5.4\n\n##### Permissions\nMust have the `list_team_channels` permission.\n\n",
       "authentication": {
         "token": "{{ mattermost_token }}",
         "type": "bearer"
@@ -1923,7 +1923,7 @@
       "_id": "__REQ_96__",
       "_type": "request",
       "name": "Search channels",
-      "description": "Search public channels on a team based on the search term provided in the request body.\n##### Permissions\nMust have the `list_team_channels` permission.\n",
+      "description": "Search public channels on a team based on the search term provided in the request body.\n##### Permissions\nMust have the `list_team_channels` permission.\n\n##### Code Samples\n```go\nimport \"github.com/mattermost/mattermost-server/model\"\nClient := model.NewAPIv4Client(\"https://your-mattermost-url.com\")\nClient.Login(\"email@domain.com\", \"Password1\")\n\nsearch := &model.ChannelSearch{Term: <CHANNEL DISPLAYNAME>}\n\n// SearchChannels\nchannels, resp := Client.SearchChannels(<TEAMID>, search)\n\n```\n",
       "authentication": {
         "token": "{{ mattermost_token }}",
         "type": "bearer"
@@ -1943,7 +1943,7 @@
       "_id": "__REQ_97__",
       "_type": "request",
       "name": "Get a channel by name",
-      "description": "Gets channel from the provided team id and channel name strings.\n##### Permissions\n`read_channel` permission for the channel.\n",
+      "description": "Gets channel from the provided team id and channel name strings.\n##### Permissions\n`read_channel` permission for the channel.\n\n##### Code Samples\n```go\nimport \"github.com/mattermost/mattermost-server/model\"\nClient := model.NewAPIv4Client(\"https://your-mattermost-url.com\")\nClient.Login(\"email@domain.com\", \"Password1\")\n\n// GetChannelByName\nchannel, resp := Client.GetChannelByName(<CHANNEL NAME>, <TEAMID>, \"\")\n\n```\n",
       "authentication": {
         "token": "{{ mattermost_token }}",
         "type": "bearer"
@@ -1960,7 +1960,7 @@
       "_id": "__REQ_98__",
       "_type": "request",
       "name": "Get a channel by name and team name",
-      "description": "Gets a channel from the provided team name and channel name strings.\n##### Permissions\n`read_channel` permission for the channel.\n",
+      "description": "Gets a channel from the provided team name and channel name strings.\n##### Permissions\n`read_channel` permission for the channel.\n\n##### Code Samples\n```go\nimport \"github.com/mattermost/mattermost-server/model\"\nClient := model.NewAPIv4Client(\"https://your-mattermost-url.com\")\nClient.Login(\"email@domain.com\", \"Password1\")\n\n// GetChannelByNameForTeamName\nchannel, resp = Client.GetChannelByNameForTeamName(<CHANNEL NAME>, <TEAM NAME>, \"\")\n\n```\n",
       "authentication": {
         "token": "{{ mattermost_token }}",
         "type": "bearer"
@@ -1977,7 +1977,7 @@
       "_id": "__REQ_99__",
       "_type": "request",
       "name": "Get channel members",
-      "description": "Get a page of members for a channel.\n##### Permissions\n`read_channel` permission for the channel.\n",
+      "description": "Get a page of members for a channel.\n##### Permissions\n`read_channel` permission for the channel.\n\n##### Code Samples\n```go\nimport \"github.com/mattermost/mattermost-server/model\"\nClient := model.NewAPIv4Client(\"https://your-mattermost-url.com\")\nClient.Login(\"email@domain.com\", \"Password1\")\n\n// GetChannelMembers\nmembers, resp := Client.GetChannelMembers(th.BasicChannel.Id, 0, 60, \"\")\n\n```\n",
       "authentication": {
         "token": "{{ mattermost_token }}",
         "type": "bearer"
@@ -1994,7 +1994,7 @@
       "_id": "__REQ_100__",
       "_type": "request",
       "name": "Add user to channel",
-      "description": "Add a user to a channel by creating a channel member object.",
+      "description": "Add a user to a channel by creating a channel member object.\n##### Code Samples\n```go\nimport \"github.com/mattermost/mattermost-server/model\"\nClient := model.NewAPIv4Client(\"https://your-mattermost-url.com\")\nClient.Login(\"email@domain.com\", \"Password1\")\n\n// AddChannelMember\ncm, resp := Client.AddChannelMember(<CHANNEL ID>, <ID OF USER TO ADD>)\n\n// AddChannelMemberWithRootId\ncm, resp := Client.AddChannelMemberWithRootId(<CHANNEL ID>, <ID OF USER TO ADD>, <POST ROOT ID>)\n\n```\n",
       "authentication": {
         "token": "{{ mattermost_token }}",
         "type": "bearer"
@@ -2014,7 +2014,7 @@
       "_id": "__REQ_101__",
       "_type": "request",
       "name": "Get channel members by ids",
-      "description": "Get a list of channel members based on the provided user ids.\n##### Permissions\nMust have the `read_channel` permission.\n",
+      "description": "Get a list of channel members based on the provided user ids.\n##### Permissions\nMust have the `read_channel` permission.\n\n##### Code Samples\n```go\nimport \"github.com/mattermost/mattermost-server/model\"\nClient := model.NewAPIv4Client(\"https://your-mattermost-url.com\")\nClient.Login(\"email@domain.com\", \"Password1\")\n\nusersIds := []string{<Id of User1>, <Id of User2>, ...}\n\n// GetChannelMembersByIds\ncm, resp := Client.GetChannelMembersByIds(<CHANNELID>, usersIds)\n\n```\n",
       "authentication": {
         "token": "{{ mattermost_token }}",
         "type": "bearer"
@@ -2031,7 +2031,7 @@
       "_id": "__REQ_102__",
       "_type": "request",
       "name": "Get channel member",
-      "description": "Get a channel member.\n##### Permissions\n`read_channel` permission for the channel.\n",
+      "description": "Get a channel member.\n##### Permissions\n`read_channel` permission for the channel.\n\n##### Code Samples\n```go\nimport \"github.com/mattermost/mattermost-server/model\"\nClient := model.NewAPIv4Client(\"https://your-mattermost-url.com\")\nClient.Login(\"email@domain.com\", \"Password1\")\n\n// GetChannelMember\nmember, resp := Client.GetChannelMember(<CHANNELID>, <USERID>, \"\")\n\n```\n",
       "authentication": {
         "token": "{{ mattermost_token }}",
         "type": "bearer"
@@ -2048,7 +2048,7 @@
       "_id": "__REQ_103__",
       "_type": "request",
       "name": "Remove user from channel",
-      "description": "Delete a channel member, effectively removing them from a channel.\n\nIn server version 5.3 and later, channel members can only be deleted from public or private channels.\n##### Permissions\n`manage_public_channel_members` permission if the channel is public.\n`manage_private_channel_members` permission if the channel is private.\n",
+      "description": "Delete a channel member, effectively removing them from a channel.\n\nIn server version 5.3 and later, channel members can only be deleted from public or private channels.\n##### Permissions\n`manage_public_channel_members` permission if the channel is public.\n`manage_private_channel_members` permission if the channel is private.\n\n##### Code Samples\n```go\nimport \"github.com/mattermost/mattermost-server/model\"\nClient := model.NewAPIv4Client(\"https://your-mattermost-url.com\")\nClient.Login(\"email@domain.com\", \"Password1\")\n\n// RemoveUserFromChannel\npass, resp := Client.RemoveUserFromChannel(<CHANNELID>, <USERID>)\n\n```\n",
       "authentication": {
         "token": "{{ mattermost_token }}",
         "type": "bearer"
@@ -2065,7 +2065,7 @@
       "_id": "__REQ_104__",
       "_type": "request",
       "name": "Update channel roles",
-      "description": "Update a user's roles for a channel.\n##### Permissions\nMust have `manage_channel_roles` permission for the channel.\n",
+      "description": "Update a user's roles for a channel.\n##### Permissions\nMust have `manage_channel_roles` permission for the channel.\n\n##### Code Samples\n```go\nimport \"github.com/mattermost/mattermost-server/model\"\nClient := model.NewAPIv4Client(\"https://your-mattermost-url.com\")\nClient.Login(\"email@domain.com\", \"Password1\")\n\n// UpdateChannelRoles\npass, resp := Client.UpdateChannelRoles(<CHANNELID>, <USERIDTOPROMOTE>, \"channel_admin channel_user\")\n\n```\n",
       "authentication": {
         "token": "{{ mattermost_token }}",
         "type": "bearer"
@@ -2082,7 +2082,7 @@
       "_id": "__REQ_105__",
       "_type": "request",
       "name": "Update the scheme-derived roles of a channel member.",
-      "description": "Update a channel member's scheme_admin/scheme_user properties. Typically this should either be `scheme_admin=false, scheme_user=true` for ordinary channel member, or `scheme_admin=true, scheme_user=true` for a channel admin.\n__Minimum server version__: 5.0\n##### Permissions\nMust be authenticated and have the `manage_channel_roles` permission.\n",
+      "description": "Update a channel member's scheme_admin/scheme_user properties. Typically this should either be `scheme_admin=false, scheme_user=true` for ordinary channel member, or `scheme_admin=true, scheme_user=true` for a channel admin.\n__Minimum server version__: 5.0\n##### Permissions\nMust be authenticated and have the `manage_channel_roles` permission.\n\n",
       "authentication": {
         "token": "{{ mattermost_token }}",
         "type": "bearer"
@@ -2102,7 +2102,7 @@
       "_id": "__REQ_106__",
       "_type": "request",
       "name": "Update channel notifications",
-      "description": "Update a user's notification properties for a channel. Only the provided fields are updated.\n##### Permissions\nMust be logged in as the user or have `edit_other_users` permission.\n",
+      "description": "Update a user's notification properties for a channel. Only the provided fields are updated.\n##### Permissions\nMust be logged in as the user or have `edit_other_users` permission.\n\n##### Code Samples\n```go\nimport \"github.com/mattermost/mattermost-server/model\"\nClient := model.NewAPIv4Client(\"https://your-mattermost-url.com\")\nClient.Login(\"email@domain.com\", \"Password1\")\n\nprops := map[string]string{}\nprops[model.DESKTOP_NOTIFY_PROP] = model.CHANNEL_NOTIFY_MENTION\nprops[model.MARK_UNREAD_NOTIFY_PROP] = model.CHANNEL_MARK_UNREAD_MENTION\n\n// UpdateChannelNotifyProps\npass, resp := Client.UpdateChannelNotifyProps(<CHANNELID>, <USERID>, props)\n\n```\n",
       "authentication": {
         "token": "{{ mattermost_token }}",
         "type": "bearer"
@@ -2119,7 +2119,7 @@
       "_id": "__REQ_107__",
       "_type": "request",
       "name": "View channel",
-      "description": "Perform all the actions involved in viewing a channel. This includes marking channels as read, clearing push notifications, and updating the active channel.\n##### Permissions\nMust be logged in as user or have `edit_other_users` permission.\n\n__Response only includes `last_viewed_at_times` in Mattermost server 4.3 and newer.__\n",
+      "description": "Perform all the actions involved in viewing a channel. This includes marking channels as read, clearing push notifications, and updating the active channel.\n##### Permissions\nMust be logged in as user or have `edit_other_users` permission.\n\n__Response only includes `last_viewed_at_times` in Mattermost server 4.3 and newer.__\n\n##### Code Samples\n```go\nimport \"github.com/mattermost/mattermost-server/model\"\nClient := model.NewAPIv4Client(\"https://your-mattermost-url.com\")\nClient.Login(\"email@domain.com\", \"Password1\")\n\nview := &model.ChannelView{\n  ChannelId: <CHANNELID>,\n}\n// ViewChannel\npass, resp := Client.ViewChannel(<USERID>, view)\n\n```\n",
       "authentication": {
         "token": "{{ mattermost_token }}",
         "type": "bearer"
@@ -2139,7 +2139,7 @@
       "_id": "__REQ_108__",
       "_type": "request",
       "name": "Get channel members for user",
-      "description": "Get all channel members on a team for a user.\n##### Permissions\nLogged in as the user and `view_team` permission for the team. Having `manage_system` permission voids the previous requirements.\n",
+      "description": "Get all channel members on a team for a user.\n##### Permissions\nLogged in as the user and `view_team` permission for the team. Having `manage_system` permission voids the previous requirements.\n\n##### Code Samples\n```go\nimport \"github.com/mattermost/mattermost-server/model\"\nClient := model.NewAPIv4Client(\"https://your-mattermost-url.com\")\nClient.Login(\"email@domain.com\", \"Password1\")\n\n// GetChannelMembersForUser\nmembers, resp := Client.GetChannelMembersForUser(<USERID>, <TEAMID>, \"\")\n\n```\n",
       "authentication": {
         "token": "{{ mattermost_token }}",
         "type": "bearer"
@@ -2156,7 +2156,7 @@
       "_id": "__REQ_109__",
       "_type": "request",
       "name": "Get channels for user",
-      "description": "Get all the channels on a team for a user.\n##### Permissions\nLogged in as the user, or have `edit_other_users` permission, and `view_team` permission for the team.\n",
+      "description": "Get all the channels on a team for a user.\n##### Permissions\nLogged in as the user, or have `edit_other_users` permission, and `view_team` permission for the team.\n\n##### Code Samples\n```go\nimport \"github.com/mattermost/mattermost-server/model\"\nClient := model.NewAPIv4Client(\"https://your-mattermost-url.com\")\nClient.Login(\"email@domain.com\", \"Password1\")\n\n// GetChannelsForTeamForUser\nchannels, resp := Client.GetChannelsForTeamForUser(<TEAMID>, <USERID>, \"\")\n\n```\n",
       "authentication": {
         "token": "{{ mattermost_token }}",
         "type": "bearer"
@@ -2173,7 +2173,7 @@
       "_id": "__REQ_110__",
       "_type": "request",
       "name": "Get unread messages",
-      "description": "Get the total unread messages and mentions for a channel for a user.\n##### Permissions\nMust be logged in as user and have the `read_channel` permission, or have `edit_other_usrs` permission.\n",
+      "description": "Get the total unread messages and mentions for a channel for a user.\n##### Permissions\nMust be logged in as user and have the `read_channel` permission, or have `edit_other_usrs` permission.\n\n##### Code Samples\n```go\nimport \"github.com/mattermost/mattermost-server/model\"\nClient := model.NewAPIv4Client(\"https://your-mattermost-url.com\")\nClient.Login(\"email@domain.com\", \"Password1\")\n\n// GetChannelUnread\nchannelUnread, resp := Client.GetChannelUnread(<CHANNELID>, <USERID>)\n\n```\n",
       "authentication": {
         "token": "{{ mattermost_token }}",
         "type": "bearer"
@@ -2190,7 +2190,7 @@
       "_id": "__REQ_111__",
       "_type": "request",
       "name": "Set a channel's scheme",
-      "description": "Set a channel's scheme, more specifically sets the scheme_id value of a channel record.\n\n##### Permissions\nMust have `manage_system` permission.\n\n__Minimum server version__: 4.10\n",
+      "description": "Set a channel's scheme, more specifically sets the scheme_id value of a channel record.\n\n##### Permissions\nMust have `manage_system` permission.\n\n__Minimum server version__: 4.10\n\n##### Code Samples\n```go\nimport \"github.com/mattermost/mattermost-server/model\"\nClient := model.NewAPIv4Client(\"https://your-mattermost-url.com\")\nClient.Login(\"email@domain.com\", \"Password1\")\n\nchannelID := \"4xp9fdt77pncbef59f4k1qe83o\"\nschemeID := \"qjda3stwafbgpqjaxej3k76sga\"\nok, resp := UpdateChannelScheme(channelID, schemeID)\n\n```\n\n```bash\ncurl -X PUT \\\n  https://your-mattermost-url.com/api/v4/channels/4xp9fdt77pncbef59f4k1qe83o/scheme \\\n  -H 'Authorization: Bearer frn8fu5rtpyc5m4xy6q3oj4yur' \\\n  -H 'Content-Type: application/json' \\\n  -d '{\"scheme_id\": \"qjda3stwafbgpqjaxej3k76sga\"}'\n\n```\n",
       "authentication": {
         "token": "{{ mattermost_token }}",
         "type": "bearer"
@@ -2210,7 +2210,7 @@
       "_id": "__REQ_112__",
       "_type": "request",
       "name": "Create a post",
-      "description": "Create a new post in a channel. To create the post as a comment on another post, provide `root_id`.\n##### Permissions\nMust have `create_post` permission for the channel the post is being created in.\n",
+      "description": "Create a new post in a channel. To create the post as a comment on another post, provide `root_id`.\n##### Permissions\nMust have `create_post` permission for the channel the post is being created in.\n\n",
       "authentication": {
         "token": "{{ mattermost_token }}",
         "type": "bearer"
@@ -2227,7 +2227,7 @@
       "_id": "__REQ_113__",
       "_type": "request",
       "name": "Create a ephemeral post",
-      "description": "Create a new ephemeral post in a channel.\n##### Permissions\nMust have `create_post_ephemeral` permission (currently only given to system admin)\n",
+      "description": "Create a new ephemeral post in a channel.\n##### Permissions\nMust have `create_post_ephemeral` permission (currently only given to system admin)\n\n",
       "authentication": {
         "token": "{{ mattermost_token }}",
         "type": "bearer"
@@ -2244,7 +2244,7 @@
       "_id": "__REQ_114__",
       "_type": "request",
       "name": "Get a post",
-      "description": "Get a single post.\n##### Permissions\nMust have `read_channel` permission for the channel the post is in or if the channel is public, have the `read_public_channels` permission for the team.\n",
+      "description": "Get a single post.\n##### Permissions\nMust have `read_channel` permission for the channel the post is in or if the channel is public, have the `read_public_channels` permission for the team.\n\n",
       "authentication": {
         "token": "{{ mattermost_token }}",
         "type": "bearer"
@@ -2261,7 +2261,7 @@
       "_id": "__REQ_115__",
       "_type": "request",
       "name": "Delete a post",
-      "description": "Soft deletes a post, by marking the post as deleted in the database. Soft deleted posts will not be returned in post queries.\n##### Permissions\nMust be logged in as the user or have `delete_others_posts` permission.\n",
+      "description": "Soft deletes a post, by marking the post as deleted in the database. Soft deleted posts will not be returned in post queries.\n##### Permissions\nMust be logged in as the user or have `delete_others_posts` permission.\n\n",
       "authentication": {
         "token": "{{ mattermost_token }}",
         "type": "bearer"
@@ -2278,7 +2278,7 @@
       "_id": "__REQ_116__",
       "_type": "request",
       "name": "Update a post",
-      "description": "Update a post. Only the fields listed below are updatable, omitted fields will be treated as blank.\n##### Permissions\nMust have `edit_post` permission for the channel the post is in.\n",
+      "description": "Update a post. Only the fields listed below are updatable, omitted fields will be treated as blank.\n##### Permissions\nMust have `edit_post` permission for the channel the post is in.\n\n",
       "authentication": {
         "token": "{{ mattermost_token }}",
         "type": "bearer"
@@ -2298,7 +2298,7 @@
       "_id": "__REQ_117__",
       "_type": "request",
       "name": "Patch a post",
-      "description": "Partially update a post by providing only the fields you want to update. Omitted fields will not be updated. The fields that can be updated are defined in the request body, all other provided fields will be ignored.\n##### Permissions\nMust have the `edit_post` permission.\n",
+      "description": "Partially update a post by providing only the fields you want to update. Omitted fields will not be updated. The fields that can be updated are defined in the request body, all other provided fields will be ignored.\n##### Permissions\nMust have the `edit_post` permission.\n\n",
       "authentication": {
         "token": "{{ mattermost_token }}",
         "type": "bearer"
@@ -2315,7 +2315,7 @@
       "_id": "__REQ_118__",
       "_type": "request",
       "name": "Get a thread",
-      "description": "Get a post and the rest of the posts in the same thread.\n##### Permissions\nMust have `read_channel` permission for the channel the post is in or if the channel is public, have the `read_public_channels` permission for the team.\n",
+      "description": "Get a post and the rest of the posts in the same thread.\n##### Permissions\nMust have `read_channel` permission for the channel the post is in or if the channel is public, have the `read_public_channels` permission for the team.\n\n",
       "authentication": {
         "token": "{{ mattermost_token }}",
         "type": "bearer"
@@ -2332,7 +2332,7 @@
       "_id": "__REQ_119__",
       "_type": "request",
       "name": "Get a list of flagged posts",
-      "description": "Get a page of flagged posts of a user provided user id string. Selects from a channel, team or all flagged posts by a user.\n##### Permissions\nMust be user or have `manage_system` permission.\n",
+      "description": "Get a page of flagged posts of a user provided user id string. Selects from a channel, team or all flagged posts by a user.\n##### Permissions\nMust be user or have `manage_system` permission.\n\n",
       "authentication": {
         "token": "{{ mattermost_token }}",
         "type": "bearer"
@@ -2349,7 +2349,7 @@
       "_id": "__REQ_120__",
       "_type": "request",
       "name": "Get file info for post",
-      "description": "Gets a list of file information objects for the files attached to a post.\n##### Permissions\nMust have `read_channel` permission for the channel the post is in.\n",
+      "description": "Gets a list of file information objects for the files attached to a post.\n##### Permissions\nMust have `read_channel` permission for the channel the post is in.\n\n",
       "authentication": {
         "token": "{{ mattermost_token }}",
         "type": "bearer"
@@ -2366,7 +2366,7 @@
       "_id": "__REQ_121__",
       "_type": "request",
       "name": "Get posts for a channel",
-      "description": "Get a page of posts in a channel. Use the query parameters to modify the behaviour of this endpoint. The parameters `since`, `before` and `after` must not be used together.\n##### Permissions\nMust have `read_channel` permission for the channel.\n",
+      "description": "Get a page of posts in a channel. Use the query parameters to modify the behaviour of this endpoint. The parameters `since`, `before` and `after` must not be used together.\n##### Permissions\nMust have `read_channel` permission for the channel.\n\n",
       "authentication": {
         "token": "{{ mattermost_token }}",
         "type": "bearer"
@@ -2383,7 +2383,7 @@
       "_id": "__REQ_122__",
       "_type": "request",
       "name": "Search for team posts",
-      "description": "Search posts in the team and from the provided terms string.\n##### Permissions\nMust be authenticated and have the `view_team` permission.\n",
+      "description": "Search posts in the team and from the provided terms string.\n##### Permissions\nMust be authenticated and have the `view_team` permission.\n\n",
       "authentication": {
         "token": "{{ mattermost_token }}",
         "type": "bearer"
@@ -2403,7 +2403,7 @@
       "_id": "__REQ_123__",
       "_type": "request",
       "name": "Pin a post to the channel",
-      "description": "Pin a post to a channel it is in based from the provided post id string.\n##### Permissions\nMust be authenticated and have the `read_channel` permission to the channel the post is in.\n",
+      "description": "Pin a post to a channel it is in based from the provided post id string.\n##### Permissions\nMust be authenticated and have the `read_channel` permission to the channel the post is in.\n\n",
       "authentication": {
         "token": "{{ mattermost_token }}",
         "type": "bearer"
@@ -2420,7 +2420,7 @@
       "_id": "__REQ_124__",
       "_type": "request",
       "name": "Unpin a post to the channel",
-      "description": "Unpin a post to a channel it is in based from the provided post id string.\n##### Permissions\nMust be authenticated and have the `read_channel` permission to the channel the post is in.\n",
+      "description": "Unpin a post to a channel it is in based from the provided post id string.\n##### Permissions\nMust be authenticated and have the `read_channel` permission to the channel the post is in.\n\n",
       "authentication": {
         "token": "{{ mattermost_token }}",
         "type": "bearer"
@@ -2437,7 +2437,7 @@
       "_id": "__REQ_125__",
       "_type": "request",
       "name": "Perform a post action",
-      "description": "Perform a post action, which allows users to interact with integrations through posts.\n##### Permissions\nMust be authenticated and have the `read_channel` permission to the channel the post is in.\n",
+      "description": "Perform a post action, which allows users to interact with integrations through posts.\n##### Permissions\nMust be authenticated and have the `read_channel` permission to the channel the post is in.\n\n",
       "authentication": {
         "token": "{{ mattermost_token }}",
         "type": "bearer"
@@ -2454,7 +2454,7 @@
       "_id": "__REQ_126__",
       "_type": "request",
       "name": "Get the user's preferences",
-      "description": "Get a list of the user's preferences.\n##### Permissions\nMust be logged in as the user being updated or have the `edit_other_users` permission.\n",
+      "description": "Get a list of the user's preferences.\n##### Permissions\nMust be logged in as the user being updated or have the `edit_other_users` permission.\n\n",
       "authentication": {
         "token": "{{ mattermost_token }}",
         "type": "bearer"
@@ -2471,7 +2471,7 @@
       "_id": "__REQ_127__",
       "_type": "request",
       "name": "Save the user's preferences",
-      "description": "Save a list of the user's preferences.\n##### Permissions\nMust be logged in as the user being updated or have the `edit_other_users` permission.\n",
+      "description": "Save a list of the user's preferences.\n##### Permissions\nMust be logged in as the user being updated or have the `edit_other_users` permission.\n\n",
       "authentication": {
         "token": "{{ mattermost_token }}",
         "type": "bearer"
@@ -2488,7 +2488,7 @@
       "_id": "__REQ_128__",
       "_type": "request",
       "name": "Delete user's preferences",
-      "description": "Delete a list of the user's preferences.\n##### Permissions\nMust be logged in as the user being updated or have the `edit_other_users` permission.\n",
+      "description": "Delete a list of the user's preferences.\n##### Permissions\nMust be logged in as the user being updated or have the `edit_other_users` permission.\n\n",
       "authentication": {
         "token": "{{ mattermost_token }}",
         "type": "bearer"
@@ -2505,7 +2505,7 @@
       "_id": "__REQ_129__",
       "_type": "request",
       "name": "List a user's preferences by category",
-      "description": "Lists the current user's stored preferences in the given category.\n##### Permissions\nMust be logged in as the user being updated or have the `edit_other_users` permission.\n",
+      "description": "Lists the current user's stored preferences in the given category.\n##### Permissions\nMust be logged in as the user being updated or have the `edit_other_users` permission.\n\n",
       "authentication": {
         "token": "{{ mattermost_token }}",
         "type": "bearer"
@@ -2522,7 +2522,7 @@
       "_id": "__REQ_130__",
       "_type": "request",
       "name": "Get a specific user preference",
-      "description": "Gets a single preference for the current user with the given category and name.\n##### Permissions\nMust be logged in as the user being updated or have the `edit_other_users` permission.\n",
+      "description": "Gets a single preference for the current user with the given category and name.\n##### Permissions\nMust be logged in as the user being updated or have the `edit_other_users` permission.\n\n",
       "authentication": {
         "token": "{{ mattermost_token }}",
         "type": "bearer"
@@ -2539,7 +2539,7 @@
       "_id": "__REQ_131__",
       "_type": "request",
       "name": "Upload a file",
-      "description": "Uploads a file that can later be attached to a post.\n\nThis request can either be a multipart/form-data request with a channel_id, files and optional\nclient_ids defined in the FormData, or it can be a request with the channel_id and filename\ndefined as query parameters with the contents of a single file in the body of the request.\n\nOnly multipart/form-data requests are supported by server versions up to and including 4.7.\nServer versions 4.8 and higher support both types of requests.\n\n##### Permissions\nMust have `upload_file` permission.\n",
+      "description": "Uploads a file that can later be attached to a post.\n\nThis request can either be a multipart/form-data request with a channel_id, files and optional\nclient_ids defined in the FormData, or it can be a request with the channel_id and filename\ndefined as query parameters with the contents of a single file in the body of the request.\n\nOnly multipart/form-data requests are supported by server versions up to and including 4.7.\nServer versions 4.8 and higher support both types of requests.\n\n##### Permissions\nMust have `upload_file` permission.\n\n##### Code Samples\n```go\nimport \"github.com/mattermost/mattermost-server/model\"\n\nClient := model.NewAPIv4Client(\"https://your-mattermost-url.com\")\n\nfile, err := os.Open(<IMAGE_PATH>)\nif err != nil {\n  fmt.Fprintf(os.Stderr, \"%v\\n\", err)\n}\ndefer file.Close();\n\nbuf := bytes.NewBuffer(nil)\nio.Copy(buf, file)\ndata := buf.Bytes()\n\nchannelId := \"<YOUR_CHANNEL_ID>\"\nfilename := \"<FILE_NAME>\"\n\nfileUploadResponse, response := Client.UploadFile(data, channelId, filename)\n\n```\n\n```bash\ncurl -F 'files=@PATH/TO/LOCAL/FILE' \\\n-F 'channel_id=CHANNEL_ID' \\\n--header 'authorization: Bearer c49adc55z3f53ck7xtp8ebq1ir'\nhttps://your-mattermost-url.com/api/v4/files\n\n```\n",
       "authentication": {
         "token": "{{ mattermost_token }}",
         "type": "bearer"
@@ -2556,7 +2556,7 @@
       "_id": "__REQ_132__",
       "_type": "request",
       "name": "Get a file",
-      "description": "Gets a file that has been uploaded previously.\n##### Permissions\nMust have `read_channel` permission or be uploader of the file.\n",
+      "description": "Gets a file that has been uploaded previously.\n##### Permissions\nMust have `read_channel` permission or be uploader of the file.\n\n",
       "authentication": {
         "token": "{{ mattermost_token }}",
         "type": "bearer"
@@ -2573,7 +2573,7 @@
       "_id": "__REQ_133__",
       "_type": "request",
       "name": "Get a file's thumbnail",
-      "description": "Gets a file's thumbnail.\n##### Permissions\nMust have `read_channel` permission or be uploader of the file.\n",
+      "description": "Gets a file's thumbnail.\n##### Permissions\nMust have `read_channel` permission or be uploader of the file.\n\n",
       "authentication": {
         "token": "{{ mattermost_token }}",
         "type": "bearer"
@@ -2590,7 +2590,7 @@
       "_id": "__REQ_134__",
       "_type": "request",
       "name": "Get a file's preview",
-      "description": "Gets a file's preview.\n##### Permissions\nMust have `read_channel` permission or be uploader of the file.\n",
+      "description": "Gets a file's preview.\n##### Permissions\nMust have `read_channel` permission or be uploader of the file.\n\n",
       "authentication": {
         "token": "{{ mattermost_token }}",
         "type": "bearer"
@@ -2607,7 +2607,7 @@
       "_id": "__REQ_135__",
       "_type": "request",
       "name": "Get a public file link",
-      "description": "Gets a public link for a file that can be accessed without logging into Mattermost.",
+      "description": "Gets a public link for a file that can be accessed without logging into Mattermost.\n",
       "authentication": {
         "token": "{{ mattermost_token }}",
         "type": "bearer"
@@ -2624,7 +2624,7 @@
       "_id": "__REQ_136__",
       "_type": "request",
       "name": "Get metadata for a file",
-      "description": "Gets a file's info.\n##### Permissions\nMust have `read_channel` permission or be uploader of the file.\n",
+      "description": "Gets a file's info.\n##### Permissions\nMust have `read_channel` permission or be uploader of the file.\n\n",
       "authentication": {
         "token": "{{ mattermost_token }}",
         "type": "bearer"
@@ -2641,7 +2641,7 @@
       "_id": "__REQ_137__",
       "_type": "request",
       "name": "Get the jobs.",
-      "description": "Get a page of jobs. Use the query parameters to modify the behaviour of this endpoint.\n__Minimum server version: 4.1__\n##### Permissions\nMust have `manage_jobs` permission.\n",
+      "description": "Get a page of jobs. Use the query parameters to modify the behaviour of this endpoint.\n__Minimum server version: 4.1__\n##### Permissions\nMust have `manage_jobs` permission.\n\n",
       "authentication": {
         "token": "{{ mattermost_token }}",
         "type": "bearer"
@@ -2658,7 +2658,7 @@
       "_id": "__REQ_138__",
       "_type": "request",
       "name": "Create a new job.",
-      "description": "Create a new job.\n__Minimum server version: 4.1__\n##### Permissions\nMust have `manage_jobs` permission.\n",
+      "description": "Create a new job.\n__Minimum server version: 4.1__\n##### Permissions\nMust have `manage_jobs` permission.\n\n",
       "authentication": {
         "token": "{{ mattermost_token }}",
         "type": "bearer"
@@ -2678,7 +2678,7 @@
       "_id": "__REQ_139__",
       "_type": "request",
       "name": "Get a job.",
-      "description": "Gets a single job.\n__Minimum server version: 4.1__\n##### Permissions\nMust have `manage_jobs` permission.\n",
+      "description": "Gets a single job.\n__Minimum server version: 4.1__\n##### Permissions\nMust have `manage_jobs` permission.\n\n",
       "authentication": {
         "token": "{{ mattermost_token }}",
         "type": "bearer"
@@ -2695,7 +2695,7 @@
       "_id": "__REQ_140__",
       "_type": "request",
       "name": "Cancel a job.",
-      "description": "Cancel a job.\n__Minimum server version: 4.1__\n##### Permissions\nMust have `manage_jobs` permission.\n",
+      "description": "Cancel a job.\n__Minimum server version: 4.1__\n##### Permissions\nMust have `manage_jobs` permission.\n\n",
       "authentication": {
         "token": "{{ mattermost_token }}",
         "type": "bearer"
@@ -2712,7 +2712,7 @@
       "_id": "__REQ_141__",
       "_type": "request",
       "name": "Get the jobs of the given type.",
-      "description": "Get a page of jobs of the given type. Use the query parameters to modify the behaviour of this endpoint.\n__Minimum server version: 4.1__\n##### Permissions\nMust have `manage_jobs` permission.\n",
+      "description": "Get a page of jobs of the given type. Use the query parameters to modify the behaviour of this endpoint.\n__Minimum server version: 4.1__\n##### Permissions\nMust have `manage_jobs` permission.\n\n",
       "authentication": {
         "token": "{{ mattermost_token }}",
         "type": "bearer"
@@ -2729,7 +2729,7 @@
       "_id": "__REQ_142__",
       "_type": "request",
       "name": "Check system health",
-      "description": "Check if the server is up and healthy based on the configuration setting `GoRoutineHealthThreshold`. If `GoRoutineHealthThreshold` and the number of goroutines on the server exceeds that threshold the server is considered unhealthy. If `GoRoutineHealthThreshold` is not set or the number of goroutines is below the threshold the server is considered healthy.\n__Minimum server version__: 3.10\n##### Permissions\nMust be logged in.\n",
+      "description": "Check if the server is up and healthy based on the configuration setting `GoRoutineHealthThreshold`. If `GoRoutineHealthThreshold` and the number of goroutines on the server exceeds that threshold the server is considered unhealthy. If `GoRoutineHealthThreshold` is not set or the number of goroutines is below the threshold the server is considered healthy.\n__Minimum server version__: 3.10\n##### Permissions\nMust be logged in.\n\n##### Code Samples\n```go\nimport \"github.com/mattermost/mattermost-server/model\"\n\nClient := model.NewAPIv4Client(\"https://your-mattermost-url.com\")\nClient.Login(\"email@domain.com\", \"Password1\")\n\n// GetPing\nstatus, resp := Client.GetPing()\n\n```\n",
       "authentication": {
         "token": "{{ mattermost_token }}",
         "type": "bearer"
@@ -2746,7 +2746,7 @@
       "_id": "__REQ_143__",
       "_type": "request",
       "name": "Recycle database connections",
-      "description": "Recycle database connections by closing and reconnecting all connections to master and read replica databases.\n##### Permissions\nMust have `manage_system` permission.\n",
+      "description": "Recycle database connections by closing and reconnecting all connections to master and read replica databases.\n##### Permissions\nMust have `manage_system` permission.\n\n##### Code Samples\n```go\nimport \"github.com/mattermost/mattermost-server/model\"\n\nClient := model.NewAPIv4Client(\"https://your-mattermost-url.com\")\nClient.Login(\"email@domain.com\", \"Password1\")\n\nok, resp := Client.DatabaseRecycle()\n\n```\n",
       "authentication": {
         "token": "{{ mattermost_token }}",
         "type": "bearer"
@@ -2763,7 +2763,7 @@
       "_id": "__REQ_144__",
       "_type": "request",
       "name": "Send a test email",
-      "description": "Send a test email to make sure you have your email settings configured correctly. Optionally provide a configuration in the request body to test. If no valid configuration is present in the request body the current server configuration will be tested.\n##### Permissions\nMust have `manage_system` permission.\n",
+      "description": "Send a test email to make sure you have your email settings configured correctly. Optionally provide a configuration in the request body to test. If no valid configuration is present in the request body the current server configuration will be tested.\n##### Permissions\nMust have `manage_system` permission.\n\n##### Code Samples\n```go\nimport \"github.com/mattermost/mattermost-server/model\"\n\nClient := model.NewAPIv4Client(\"https://your-mattermost-url.com\")\nClient.Login(\"email@domain.com\", \"Password1\")\n\nconfig := model.Config{\n  EmailSettings: model.EmailSettings{\n    SMTPServer:    <SMTPServer>,\n    SMTPPort:      <SMTPPort>,\n    SMTPUsername:  <SMTPUsername>,\n    SMTPPassword:  <SMTPPassword>,\n  },\n}\n\n// TestEmail\nok, resp := Client.TestEmail(&config)\n\n```\n",
       "authentication": {
         "token": "{{ mattermost_token }}",
         "type": "bearer"
@@ -2780,7 +2780,7 @@
       "_id": "__REQ_145__",
       "_type": "request",
       "name": "Test AWS S3 connection",
-      "description": "Send a test to validate if can connect to AWS S3. Optionally provide a configuration in the request body to test. If no valid configuration is present in the request body the current server configuration will be tested.\n##### Permissions\nMust have `manage_system` permission.\n__Minimum server version__: 4.8\n",
+      "description": "Send a test to validate if can connect to AWS S3. Optionally provide a configuration in the request body to test. If no valid configuration is present in the request body the current server configuration will be tested.\n##### Permissions\nMust have `manage_system` permission.\n__Minimum server version__: 4.8\n\n##### Code Samples\n```go\nimport \"github.com/mattermost/mattermost-server/model\"\n\nClient := model.NewAPIv4Client(\"https://your-mattermost-url.com\")\nClient.Login(\"email@domain.com\", \"Password1\")\n\nconfig := model.Config{\n  FileSettings: model.FileSettings{\n    DriverName:              model.NewString(model.IMAGE_DRIVER_S3),\n    AmazonS3AccessKeyId:     <AmazonS3AccessKeyId>,\n    AmazonS3SecretAccessKey: <AmazonS3SecretAccessKey>,\n    AmazonS3Bucket:          <AmazonS3Bucket>,\n    AmazonS3Endpoint:        <AmazonS3Endpoint>\n  },\n}\n\n// TestS3Connection\nok, resp := Client.TestS3Connection(&config)\n\n```\n",
       "authentication": {
         "token": "{{ mattermost_token }}",
         "type": "bearer"
@@ -2797,7 +2797,7 @@
       "_id": "__REQ_146__",
       "_type": "request",
       "name": "Get configuration",
-      "description": "Retrieve the current server configuration\n##### Permissions\nMust have `manage_system` permission.\n",
+      "description": "Retrieve the current server configuration\n##### Permissions\nMust have `manage_system` permission.\n\n##### Code Samples\n```go\nimport \"github.com/mattermost/mattermost-server/model\"\n\nClient := model.NewAPIv4Client(\"https://your-mattermost-url.com\")\nClient.Login(\"email@domain.com\", \"Password1\")\n\n// GetConfig\nconfig, resp := Client.GetConfig()\n\n```\n",
       "authentication": {
         "token": "{{ mattermost_token }}",
         "type": "bearer"
@@ -2814,7 +2814,7 @@
       "_id": "__REQ_147__",
       "_type": "request",
       "name": "Update configuration",
-      "description": "Submit a new configuration for the server to use. As of server version 4.8, the `PluginSettings.EnableUploads` setting cannot be modified by this endpoint.\n##### Permissions\nMust have `manage_system` permission.\n",
+      "description": "Submit a new configuration for the server to use. As of server version 4.8, the `PluginSettings.EnableUploads` setting cannot be modified by this endpoint.\n##### Permissions\nMust have `manage_system` permission.\n\n##### Code Samples\n```go\nimport \"github.com/mattermost/mattermost-server/model\"\n\nClient := model.NewAPIv4Client(\"https://your-mattermost-url.com\")\nClient.Login(\"email@domain.com\", \"Password1\")\n\n// GetConfig\nconfig, resp := Client.GetConfig()\n\nconfig.TeamSettings.SiteName = \"MyFancyName\"\n\n// UpdateConfig\nupdatedConfig, resp := Client.UpdateConfig(config)\n\n```\n",
       "authentication": {
         "token": "{{ mattermost_token }}",
         "type": "bearer"
@@ -2831,7 +2831,7 @@
       "_id": "__REQ_148__",
       "_type": "request",
       "name": "Reload configuration",
-      "description": "Reload the configuration file to pick up on any changes made to it.\n##### Permissions\nMust have `manage_system` permission.\n",
+      "description": "Reload the configuration file to pick up on any changes made to it.\n##### Permissions\nMust have `manage_system` permission.\n\n##### Code Samples\n```go\nimport \"github.com/mattermost/mattermost-server/model\"\n\nClient := model.NewAPIv4Client(\"https://your-mattermost-url.com\")\nClient.Login(\"email@domain.com\", \"Password1\")\n\n// ReloadConfig\nok, resp := Client.ReloadConfig()\n\n```\n",
       "authentication": {
         "token": "{{ mattermost_token }}",
         "type": "bearer"
@@ -2848,7 +2848,7 @@
       "_id": "__REQ_149__",
       "_type": "request",
       "name": "Get client configuration",
-      "description": "Get a subset of the server configuration needed by the client.\n##### Permissions\nNo permission required.\n",
+      "description": "Get a subset of the server configuration needed by the client.\n##### Permissions\nNo permission required.\n\n##### Code Samples\n```go\nimport \"github.com/mattermost/mattermost-server/model\"\n\nClient := model.NewAPIv4Client(\"https://your-mattermost-url.com\")\nClient.Login(\"email@domain.com\", \"Password1\")\n\n// GetOldClientConfig\nok, resp := Client.GetOldClientConfig()\n\n```\n",
       "authentication": {
         "token": "{{ mattermost_token }}",
         "type": "bearer"
@@ -2865,7 +2865,7 @@
       "_id": "__REQ_150__",
       "_type": "request",
       "name": "Get configuration made through environment variables",
-      "description": "Retrieve a json object mirroring the server configuration where fields are set to true\nif the corresponding config setting is set through an environment variable. Settings\nthat haven't been set through environment variables will be missing from the object.\n\n__Minimum server version__: 4.10\n\n##### Permissions\nMust have `manage_system` permission.\n",
+      "description": "Retrieve a json object mirroring the server configuration where fields are set to true\nif the corresponding config setting is set through an environment variable. Settings\nthat haven't been set through environment variables will be missing from the object.\n\n__Minimum server version__: 4.10\n\n##### Permissions\nMust have `manage_system` permission.\n\n",
       "authentication": {
         "token": "{{ mattermost_token }}",
         "type": "bearer"
@@ -2882,7 +2882,7 @@
       "_id": "__REQ_151__",
       "_type": "request",
       "name": "Upload license file",
-      "description": "Upload a license to enable enterprise features.\n\n__Minimum server version__: 4.0\n\n##### Permissions\nMust have `manage_system` permission.\n",
+      "description": "Upload a license to enable enterprise features.\n\n__Minimum server version__: 4.0\n\n##### Permissions\nMust have `manage_system` permission.\n\n##### Code Samples\n```go\nimport \"github.com/mattermost/mattermost-server/model\"\n\nClient := model.NewAPIv4Client(\"https://your-mattermost-url.com\")\nClient.Login(\"email@domain.com\", \"Password1\")\n\nfile, err := os.Open(\"<Your license file>\")\nif err != nil {\n  return err\n}\ndefer file.Close()\n\ndata := &bytes.Buffer{}\nif _, err := io.Copy(data, file); err != nil {\n  return err\n}\n\nok, resp := Client.UploadLicenseFile(data.Bytes())\n\n```\n",
       "authentication": {
         "token": "{{ mattermost_token }}",
         "type": "bearer"
@@ -2899,7 +2899,7 @@
       "_id": "__REQ_152__",
       "_type": "request",
       "name": "Remove license file",
-      "description": "Remove the license file from the server. This will disable all enterprise features.\n\n__Minimum server version__: 4.0\n\n##### Permissions\nMust have `manage_system` permission.\n",
+      "description": "Remove the license file from the server. This will disable all enterprise features.\n\n__Minimum server version__: 4.0\n\n##### Permissions\nMust have `manage_system` permission.\n\n",
       "authentication": {
         "token": "{{ mattermost_token }}",
         "type": "bearer"
@@ -2916,7 +2916,7 @@
       "_id": "__REQ_153__",
       "_type": "request",
       "name": "Get client license",
-      "description": "Get a subset of the server license needed by the client.\n##### Permissions\nNo permission required but having the `manage_system` permission returns more information.\n",
+      "description": "Get a subset of the server license needed by the client.\n##### Permissions\nNo permission required but having the `manage_system` permission returns more information.\n\n##### Code Samples\n```go\nimport \"github.com/mattermost/mattermost-server/model\"\n\nClient := model.NewAPIv4Client(\"https://your-mattermost-url.com\")\nClient.Login(\"email@domain.com\", \"Password1\")\n\n// GetOldClientLicense\nlicense, resp := Client.GetOldClientLicense()\n\n```\n",
       "authentication": {
         "token": "{{ mattermost_token }}",
         "type": "bearer"
@@ -2933,7 +2933,7 @@
       "_id": "__REQ_154__",
       "_type": "request",
       "name": "Get audits",
-      "description": "Get a page of audits for all users on the system, selected with `page` and `per_page` query parameters.\n##### Permissions\nMust have `manage_system` permission.\n",
+      "description": "Get a page of audits for all users on the system, selected with `page` and `per_page` query parameters.\n##### Permissions\nMust have `manage_system` permission.\n\n##### Code Samples\n```go\nimport \"github.com/mattermost/mattermost-server/model\"\n\nClient := model.NewAPIv4Client(\"https://your-mattermost-url.com\")\nClient.Login(\"email@domain.com\", \"Password1\")\n\n// GetAudits\naudits, resp := Client.GetAudits(0, 100, \"\")\n\n```\n",
       "authentication": {
         "token": "{{ mattermost_token }}",
         "type": "bearer"
@@ -2950,7 +2950,7 @@
       "_id": "__REQ_155__",
       "_type": "request",
       "name": "Invalidate all the caches",
-      "description": "Purge all the in-memory caches for the Mattermost server. This can have a temporary negative effect on performance while the caches are re-populated.\n##### Permissions\nMust have `manage_system` permission.\n",
+      "description": "Purge all the in-memory caches for the Mattermost server. This can have a temporary negative effect on performance while the caches are re-populated.\n##### Permissions\nMust have `manage_system` permission.\n\n##### Code Samples\n```go\nimport \"github.com/mattermost/mattermost-server/model\"\n\nClient := model.NewAPIv4Client(\"https://your-mattermost-url.com\")\nClient.Login(\"email@domain.com\", \"Password1\")\n\n// InvalidateCaches\nok, resp := Client.InvalidateCaches()\n\n```\n",
       "authentication": {
         "token": "{{ mattermost_token }}",
         "type": "bearer"
@@ -2967,7 +2967,7 @@
       "_id": "__REQ_156__",
       "_type": "request",
       "name": "Get logs",
-      "description": "Get a page of server logs, selected with `page` and `logs_per_page` query parameters.\n##### Permissions\nMust have `manage_system` permission.\n",
+      "description": "Get a page of server logs, selected with `page` and `logs_per_page` query parameters.\n##### Permissions\nMust have `manage_system` permission.\n\n##### Code Samples\n```go\nimport \"github.com/mattermost/mattermost-server/model\"\n\nClient := model.NewAPIv4Client(\"https://your-mattermost-url.com\")\nClient.Login(\"email@domain.com\", \"Password1\")\n\n// GetLogs\nlogs, resp := Client.GetLogs(0, 10)\n\n```\n",
       "authentication": {
         "token": "{{ mattermost_token }}",
         "type": "bearer"
@@ -2984,7 +2984,7 @@
       "_id": "__REQ_157__",
       "_type": "request",
       "name": "Add log message",
-      "description": "Add log messages to the server logs.\n##### Permissions\nUsers with `manage_system` permission can log ERROR or DEBUG messages.\nLogged in users can log ERROR or DEBUG messages when `ServiceSettings.EnableDeveloper` is `true` or just DEBUG messages when `false`.\nNon-logged in users can log ERROR or DEBUG messages when `ServiceSettings.EnableDeveloper` is `true` and cannot log when `false`.\n",
+      "description": "Add log messages to the server logs.\n##### Permissions\nUsers with `manage_system` permission can log ERROR or DEBUG messages.\nLogged in users can log ERROR or DEBUG messages when `ServiceSettings.EnableDeveloper` is `true` or just DEBUG messages when `false`.\nNon-logged in users can log ERROR or DEBUG messages when `ServiceSettings.EnableDeveloper` is `true` and cannot log when `false`.\n\n##### Code Samples\n```go\nimport \"github.com/mattermost/mattermost-server/model\"\n\nClient := model.NewAPIv4Client(\"https://your-mattermost-url.com\")\nClient.Login(\"email@domain.com\", \"Password1\")\n\nmessage := make(map[string]string)\nmessage[\"level\"] = \"ERROR\"\nmessage[\"message\"] = \"this is a test\"\n\n// PostLog\n_, resp := Client.PostLog(message)\n\n```\n",
       "authentication": {
         "token": "{{ mattermost_token }}",
         "type": "bearer"
@@ -3004,7 +3004,7 @@
       "_id": "__REQ_158__",
       "_type": "request",
       "name": "Get analytics",
-      "description": "Get some analytics data about the system. This endpoint uses the old format, the `/analytics` route is reserved for the new format when it gets implemented.\n\nThe returned JSON changes based on the `name` query parameter but is always key/value pairs.\n\n__Minimum server version__: 4.0\n\n##### Permissions\nMust have `manage_system` permission.\n",
+      "description": "Get some analytics data about the system. This endpoint uses the old format, the `/analytics` route is reserved for the new format when it gets implemented.\n\nThe returned JSON changes based on the `name` query parameter but is always key/value pairs.\n\n__Minimum server version__: 4.0\n\n##### Permissions\nMust have `manage_system` permission.\n\n",
       "authentication": {
         "token": "{{ mattermost_token }}",
         "type": "bearer"
@@ -3021,7 +3021,7 @@
       "_id": "__REQ_159__",
       "_type": "request",
       "name": "Create a custom emoji",
-      "description": "Create a custom emoji for the team.\n##### Permissions\nMust be authenticated.\n",
+      "description": "Create a custom emoji for the team.\n##### Permissions\nMust be authenticated.\n\n",
       "authentication": {
         "token": "{{ mattermost_token }}",
         "type": "bearer"
@@ -3038,7 +3038,7 @@
       "_id": "__REQ_160__",
       "_type": "request",
       "name": "Get a list of custom emoji",
-      "description": "Get a page of metadata for custom emoji on the system. Since server version 4.7, sort using the `sort` query parameter.\n##### Permissions\nMust be authenticated.\n",
+      "description": "Get a page of metadata for custom emoji on the system. Since server version 4.7, sort using the `sort` query parameter.\n##### Permissions\nMust be authenticated.\n\n",
       "authentication": {
         "token": "{{ mattermost_token }}",
         "type": "bearer"
@@ -3055,7 +3055,7 @@
       "_id": "__REQ_161__",
       "_type": "request",
       "name": "Get a custom emoji",
-      "description": "Get some metadata for a custom emoji.\n##### Permissions\nMust be authenticated.\n",
+      "description": "Get some metadata for a custom emoji.\n##### Permissions\nMust be authenticated.\n\n",
       "authentication": {
         "token": "{{ mattermost_token }}",
         "type": "bearer"
@@ -3072,7 +3072,7 @@
       "_id": "__REQ_162__",
       "_type": "request",
       "name": "Delete a custom emoji",
-      "description": "Delete a custom emoji.\n##### Permissions\nMust have the `manage_team` or `manage_system` permissions or be the user who created the emoji.\n",
+      "description": "Delete a custom emoji.\n##### Permissions\nMust have the `manage_team` or `manage_system` permissions or be the user who created the emoji.\n\n",
       "authentication": {
         "token": "{{ mattermost_token }}",
         "type": "bearer"
@@ -3089,7 +3089,7 @@
       "_id": "__REQ_163__",
       "_type": "request",
       "name": "Get a custom emoji by name",
-      "description": "Get some metadata for a custom emoji using its name.\n##### Permissions\nMust be authenticated.\n\n__Minimum server version__: 4.7\n",
+      "description": "Get some metadata for a custom emoji using its name.\n##### Permissions\nMust be authenticated.\n\n__Minimum server version__: 4.7\n\n",
       "authentication": {
         "token": "{{ mattermost_token }}",
         "type": "bearer"
@@ -3106,7 +3106,7 @@
       "_id": "__REQ_164__",
       "_type": "request",
       "name": "Get custom emoji image",
-      "description": "Get the image for a custom emoji.\n##### Permissions\nMust be authenticated.\n",
+      "description": "Get the image for a custom emoji.\n##### Permissions\nMust be authenticated.\n\n",
       "authentication": {
         "token": "{{ mattermost_token }}",
         "type": "bearer"
@@ -3123,7 +3123,7 @@
       "_id": "__REQ_165__",
       "_type": "request",
       "name": "Search custom emoji",
-      "description": "Search for custom emoji by name based on search criteria provided in the request body. A maximum of 200 results are returned.\n##### Permissions\nMust be authenticated.\n\n__Minimum server version__: 4.7\n",
+      "description": "Search for custom emoji by name based on search criteria provided in the request body. A maximum of 200 results are returned.\n##### Permissions\nMust be authenticated.\n\n__Minimum server version__: 4.7\n\n",
       "authentication": {
         "token": "{{ mattermost_token }}",
         "type": "bearer"
@@ -3143,7 +3143,7 @@
       "_id": "__REQ_166__",
       "_type": "request",
       "name": "Autocomplete custom emoji",
-      "description": "Get a list of custom emoji with names starting with or matching the provided name. Returns a maximum of 100 results.\n##### Permissions\nMust be authenticated.\n\n__Minimum server version__: 4.7\n",
+      "description": "Get a list of custom emoji with names starting with or matching the provided name. Returns a maximum of 100 results.\n##### Permissions\nMust be authenticated.\n\n__Minimum server version__: 4.7\n\n",
       "authentication": {
         "token": "{{ mattermost_token }}",
         "type": "bearer"
@@ -3160,7 +3160,7 @@
       "_id": "__REQ_167__",
       "_type": "request",
       "name": "Create an incoming webhook",
-      "description": "Create an incoming webhook for a channel.\n##### Permissions\n`manage_webhooks` for the channel the webhook is in.\n",
+      "description": "Create an incoming webhook for a channel.\n##### Permissions\n`manage_webhooks` for the channel the webhook is in.\n\n",
       "authentication": {
         "token": "{{ mattermost_token }}",
         "type": "bearer"
@@ -3180,7 +3180,7 @@
       "_id": "__REQ_168__",
       "_type": "request",
       "name": "List incoming webhooks",
-      "description": "Get a page of a list of incoming webhooks. Optionally filter for a specific team using query parameters.\n##### Permissions\n`manage_webhooks` for the system or `manage_webhooks` for the specific team.\n",
+      "description": "Get a page of a list of incoming webhooks. Optionally filter for a specific team using query parameters.\n##### Permissions\n`manage_webhooks` for the system or `manage_webhooks` for the specific team.\n\n",
       "authentication": {
         "token": "{{ mattermost_token }}",
         "type": "bearer"
@@ -3197,7 +3197,7 @@
       "_id": "__REQ_169__",
       "_type": "request",
       "name": "Get an incoming webhook",
-      "description": "Get an incoming webhook given the hook id.\n##### Permissions\n`manage_webhooks` for system or `manage_webhooks` for the specific team or `manage_webhooks` for the channel.\n",
+      "description": "Get an incoming webhook given the hook id.\n##### Permissions\n`manage_webhooks` for system or `manage_webhooks` for the specific team or `manage_webhooks` for the channel.\n\n",
       "authentication": {
         "token": "{{ mattermost_token }}",
         "type": "bearer"
@@ -3214,7 +3214,7 @@
       "_id": "__REQ_170__",
       "_type": "request",
       "name": "Update an incoming webhook",
-      "description": "Update an incoming webhook given the hook id.\n##### Permissions\n`manage_webhooks` for system or `manage_webhooks` for the specific team or `manage_webhooks` for the channel.\n",
+      "description": "Update an incoming webhook given the hook id.\n##### Permissions\n`manage_webhooks` for system or `manage_webhooks` for the specific team or `manage_webhooks` for the channel.\n\n",
       "authentication": {
         "token": "{{ mattermost_token }}",
         "type": "bearer"
@@ -3234,7 +3234,7 @@
       "_id": "__REQ_171__",
       "_type": "request",
       "name": "Create an outgoing webhook",
-      "description": "Create an outgoing webhook for a team.\n##### Permissions\n`manage_webhooks` for the team the webhook is in.\n",
+      "description": "Create an outgoing webhook for a team.\n##### Permissions\n`manage_webhooks` for the team the webhook is in.\n\n",
       "authentication": {
         "token": "{{ mattermost_token }}",
         "type": "bearer"
@@ -3254,7 +3254,7 @@
       "_id": "__REQ_172__",
       "_type": "request",
       "name": "List outgoing webhooks",
-      "description": "Get a page of a list of outgoing webhooks. Optionally filter for a specific team or channel using query parameters.\n##### Permissions\n`manage_webhooks` for the system or `manage_webhooks` for the specific team/channel.\n",
+      "description": "Get a page of a list of outgoing webhooks. Optionally filter for a specific team or channel using query parameters.\n##### Permissions\n`manage_webhooks` for the system or `manage_webhooks` for the specific team/channel.\n\n",
       "authentication": {
         "token": "{{ mattermost_token }}",
         "type": "bearer"
@@ -3271,7 +3271,7 @@
       "_id": "__REQ_173__",
       "_type": "request",
       "name": "Get an outgoing webhook",
-      "description": "Get an outgoing webhook given the hook id.\n##### Permissions\n`manage_webhooks` for system or `manage_webhooks` for the specific team or `manage_webhooks` for the channel.\n",
+      "description": "Get an outgoing webhook given the hook id.\n##### Permissions\n`manage_webhooks` for system or `manage_webhooks` for the specific team or `manage_webhooks` for the channel.\n\n",
       "authentication": {
         "token": "{{ mattermost_token }}",
         "type": "bearer"
@@ -3288,7 +3288,7 @@
       "_id": "__REQ_174__",
       "_type": "request",
       "name": "Delete an outgoing webhook",
-      "description": "Delete an outgoing webhook given the hook id.\n##### Permissions\n`manage_webhooks` for system or `manage_webhooks` for the specific team or `manage_webhooks` for the channel.\n",
+      "description": "Delete an outgoing webhook given the hook id.\n##### Permissions\n`manage_webhooks` for system or `manage_webhooks` for the specific team or `manage_webhooks` for the channel.\n\n",
       "authentication": {
         "token": "{{ mattermost_token }}",
         "type": "bearer"
@@ -3305,7 +3305,7 @@
       "_id": "__REQ_175__",
       "_type": "request",
       "name": "Update an outgoing webhook",
-      "description": "Update an outgoing webhook given the hook id.\n##### Permissions\n`manage_webhooks` for system or `manage_webhooks` for the specific team or `manage_webhooks` for the channel.\n",
+      "description": "Update an outgoing webhook given the hook id.\n##### Permissions\n`manage_webhooks` for system or `manage_webhooks` for the specific team or `manage_webhooks` for the channel.\n\n",
       "authentication": {
         "token": "{{ mattermost_token }}",
         "type": "bearer"
@@ -3325,7 +3325,7 @@
       "_id": "__REQ_176__",
       "_type": "request",
       "name": "Regenerate the token for the outgoing webhook.",
-      "description": "Regenerate the token for the outgoing webhook.\n##### Permissions\n`manage_webhooks` for system or `manage_webhooks` for the specific team or `manage_webhooks` for the channel.\n",
+      "description": "Regenerate the token for the outgoing webhook.\n##### Permissions\n`manage_webhooks` for system or `manage_webhooks` for the specific team or `manage_webhooks` for the channel.\n\n",
       "authentication": {
         "token": "{{ mattermost_token }}",
         "type": "bearer"
@@ -3342,7 +3342,7 @@
       "_id": "__REQ_177__",
       "_type": "request",
       "name": "Get metadata",
-      "description": "Get SAML metadata from the server. SAML must be configured properly.\n##### Permissions\nNo permission required.\n",
+      "description": "Get SAML metadata from the server. SAML must be configured properly.\n##### Permissions\nNo permission required.\n\n",
       "authentication": {
         "token": "{{ mattermost_token }}",
         "type": "bearer"
@@ -3359,7 +3359,7 @@
       "_id": "__REQ_178__",
       "_type": "request",
       "name": "Upload IDP certificate",
-      "description": "Upload the IDP certificate to be used with your SAML configuration. This will also set the filename for the IdpCertificateFile setting in your `config.json`.\n##### Permissions\nMust have `manage_system` permission.\n",
+      "description": "Upload the IDP certificate to be used with your SAML configuration. This will also set the filename for the IdpCertificateFile setting in your `config.json`.\n##### Permissions\nMust have `manage_system` permission.\n\n",
       "authentication": {
         "token": "{{ mattermost_token }}",
         "type": "bearer"
@@ -3376,7 +3376,7 @@
       "_id": "__REQ_179__",
       "_type": "request",
       "name": "Remove IDP certificate",
-      "description": "Delete the current IDP certificate being used with your SAML configuration. This will also disable SAML on your system as this certificate is required for SAML.\n##### Permissions\nMust have `manage_system` permission.\n",
+      "description": "Delete the current IDP certificate being used with your SAML configuration. This will also disable SAML on your system as this certificate is required for SAML.\n##### Permissions\nMust have `manage_system` permission.\n\n",
       "authentication": {
         "token": "{{ mattermost_token }}",
         "type": "bearer"
@@ -3393,7 +3393,7 @@
       "_id": "__REQ_180__",
       "_type": "request",
       "name": "Upload public certificate",
-      "description": "Upload the public certificate to be used for encryption with your SAML configuration. This will also set the filename for the PublicCertificateFile setting in your `config.json`.\n##### Permissions\nMust have `manage_system` permission.\n",
+      "description": "Upload the public certificate to be used for encryption with your SAML configuration. This will also set the filename for the PublicCertificateFile setting in your `config.json`.\n##### Permissions\nMust have `manage_system` permission.\n\n",
       "authentication": {
         "token": "{{ mattermost_token }}",
         "type": "bearer"
@@ -3410,7 +3410,7 @@
       "_id": "__REQ_181__",
       "_type": "request",
       "name": "Remove public certificate",
-      "description": "Delete the current public certificate being used with your SAML configuration. This will also disable encryption for SAML on your system as this certificate is required for that.\n##### Permissions\nMust have `manage_system` permission.\n",
+      "description": "Delete the current public certificate being used with your SAML configuration. This will also disable encryption for SAML on your system as this certificate is required for that.\n##### Permissions\nMust have `manage_system` permission.\n\n",
       "authentication": {
         "token": "{{ mattermost_token }}",
         "type": "bearer"
@@ -3427,7 +3427,7 @@
       "_id": "__REQ_182__",
       "_type": "request",
       "name": "Upload private key",
-      "description": "Upload the private key to be used for encryption with your SAML configuration. This will also set the filename for the PrivateKeyFile setting in your `config.json`.\n##### Permissions\nMust have `manage_system` permission.\n",
+      "description": "Upload the private key to be used for encryption with your SAML configuration. This will also set the filename for the PrivateKeyFile setting in your `config.json`.\n##### Permissions\nMust have `manage_system` permission.\n\n",
       "authentication": {
         "token": "{{ mattermost_token }}",
         "type": "bearer"
@@ -3444,7 +3444,7 @@
       "_id": "__REQ_183__",
       "_type": "request",
       "name": "Remove private key",
-      "description": "Delete the current private key being used with your SAML configuration. This will also disable encryption for SAML on your system as this key is required for that.\n##### Permissions\nMust have `manage_system` permission.\n",
+      "description": "Delete the current private key being used with your SAML configuration. This will also disable encryption for SAML on your system as this key is required for that.\n##### Permissions\nMust have `manage_system` permission.\n\n",
       "authentication": {
         "token": "{{ mattermost_token }}",
         "type": "bearer"
@@ -3461,7 +3461,7 @@
       "_id": "__REQ_184__",
       "_type": "request",
       "name": "Get certificate status",
-      "description": "Get the status of the uploaded certificates and keys in use by your SAML configuration.\n##### Permissions\nMust have `manage_system` permission.\n",
+      "description": "Get the status of the uploaded certificates and keys in use by your SAML configuration.\n##### Permissions\nMust have `manage_system` permission.\n\n",
       "authentication": {
         "token": "{{ mattermost_token }}",
         "type": "bearer"
@@ -3478,7 +3478,7 @@
       "_id": "__REQ_185__",
       "_type": "request",
       "name": "Create report",
-      "description": "Create and save a compliance report.\n##### Permissions\nMust have `manage_system` permission.\n",
+      "description": "Create and save a compliance report.\n##### Permissions\nMust have `manage_system` permission.\n\n",
       "authentication": {
         "token": "{{ mattermost_token }}",
         "type": "bearer"
@@ -3495,7 +3495,7 @@
       "_id": "__REQ_186__",
       "_type": "request",
       "name": "Get reports",
-      "description": "Get a list of compliance reports previously created by page, selected with `page` and `per_page` query parameters.\n##### Permissions\nMust have `manage_system` permission.\n",
+      "description": "Get a list of compliance reports previously created by page, selected with `page` and `per_page` query parameters.\n##### Permissions\nMust have `manage_system` permission.\n\n",
       "authentication": {
         "token": "{{ mattermost_token }}",
         "type": "bearer"
@@ -3512,7 +3512,7 @@
       "_id": "__REQ_187__",
       "_type": "request",
       "name": "Get a report",
-      "description": "Get a compliance reports previously created.\n##### Permissions\nMust have `manage_system` permission.\n",
+      "description": "Get a compliance reports previously created.\n##### Permissions\nMust have `manage_system` permission.\n\n",
       "authentication": {
         "token": "{{ mattermost_token }}",
         "type": "bearer"
@@ -3529,7 +3529,7 @@
       "_id": "__REQ_188__",
       "_type": "request",
       "name": "Download a report",
-      "description": "Download the full contents of a report as a file.\n##### Permissions\nMust have `manage_system` permission.\n",
+      "description": "Download the full contents of a report as a file.\n##### Permissions\nMust have `manage_system` permission.\n\n",
       "authentication": {
         "token": "{{ mattermost_token }}",
         "type": "bearer"
@@ -3546,7 +3546,7 @@
       "_id": "__REQ_189__",
       "_type": "request",
       "name": "Sync with LDAP",
-      "description": "Synchronize any user attribute changes in the configured AD/LDAP server with Mattermost.\n##### Permissions\nMust have `manage_system` permission.\n",
+      "description": "Synchronize any user attribute changes in the configured AD/LDAP server with Mattermost.\n##### Permissions\nMust have `manage_system` permission.\n\n",
       "authentication": {
         "token": "{{ mattermost_token }}",
         "type": "bearer"
@@ -3563,7 +3563,7 @@
       "_id": "__REQ_190__",
       "_type": "request",
       "name": "Test LDAP configuration",
-      "description": "Test the current AD/LDAP configuration to see if the AD/LDAP server can be contacted successfully.\n##### Permissions\nMust have `manage_system` permission.\n",
+      "description": "Test the current AD/LDAP configuration to see if the AD/LDAP server can be contacted successfully.\n##### Permissions\nMust have `manage_system` permission.\n\n",
       "authentication": {
         "token": "{{ mattermost_token }}",
         "type": "bearer"
@@ -3580,7 +3580,7 @@
       "_id": "__REQ_191__",
       "_type": "request",
       "name": "Get cluster status",
-      "description": "Get a set of information for each node in the cluster, useful for checking the status and health of each node.\n##### Permissions\nMust have `manage_system` permission.\n",
+      "description": "Get a set of information for each node in the cluster, useful for checking the status and health of each node.\n##### Permissions\nMust have `manage_system` permission.\n\n",
       "authentication": {
         "token": "{{ mattermost_token }}",
         "type": "bearer"
@@ -3597,7 +3597,7 @@
       "_id": "__REQ_192__",
       "_type": "request",
       "name": "Get brand image",
-      "description": "Get the previously uploaded brand image. Returns 404 if no brand image has been uploaded.\n##### Permissions\nNo permission required.\n",
+      "description": "Get the previously uploaded brand image. Returns 404 if no brand image has been uploaded.\n##### Permissions\nNo permission required.\n\n##### Code Samples\n```go\nimport \"github.com/mattermost/mattermost-server/model\"\n\nClient := model.NewAPIv4Client(\"https://your-mattermost-url.com\")\nClient.Login(\"email@domain.com\", \"Password1\")\n\n// GetBrandImage\nimg, err := Client.GetBrandImage()\n\n```\n",
       "authentication": {
         "token": "{{ mattermost_token }}",
         "type": "bearer"
@@ -3614,7 +3614,7 @@
       "_id": "__REQ_193__",
       "_type": "request",
       "name": "Upload brand image",
-      "description": "Uploads a brand image.\n##### Permissions\nMust have `manage_system` permission.\n",
+      "description": "Uploads a brand image.\n##### Permissions\nMust have `manage_system` permission.\n\n##### Code Samples\n```go\nimport \"github.com/mattermost/mattermost-server/model\"\n\nClient := model.NewAPIv4Client(\"https://your-mattermost-url.com\")\nClient.Login(\"email@domain.com\", \"Password1\")\n\nfile, err := os.Open(\"<Your image>\")\nif err != nil {\n  return err\n}\ndefer file.Close()\n\ndata := &bytes.Buffer{}\nif _, err := io.Copy(data, file); err != nil {\n  return err\n}\n\nok, resp := Client.UploadBrandImage(data.Bytes())\n\n```\n",
       "authentication": {
         "token": "{{ mattermost_token }}",
         "type": "bearer"
@@ -3631,7 +3631,7 @@
       "_id": "__REQ_194__",
       "_type": "request",
       "name": "Delete current brand image",
-      "description": "Deletes the previously uploaded brand image. Returns 404 if no brand image has been uploaded.\n##### Permissions\nMust have `manage_system` permission.\n__Minimum server version: 5.6__\n",
+      "description": "Deletes the previously uploaded brand image. Returns 404 if no brand image has been uploaded.\n##### Permissions\nMust have `manage_system` permission.\n__Minimum server version: 5.6__\n\n##### Code Samples\n```go\nimport \"github.com/mattermost/mattermost-server/model\"\n\nClient := model.NewAPIv4Client(\"https://your-mattermost-url.com\")\nClient.Login(\"email@domain.com\", \"Password1\")\n\n// Delete brand image\nresp := Client.DeleteBrandImage()\n\n```\n",
       "authentication": {
         "token": "{{ mattermost_token }}",
         "type": "bearer"
@@ -3648,7 +3648,7 @@
       "_id": "__REQ_195__",
       "_type": "request",
       "name": "Create a command",
-      "description": "Create a command for a team.\n##### Permissions\n`manage_slash_commands` for the team the command is in.\n",
+      "description": "Create a command for a team.\n##### Permissions\n`manage_slash_commands` for the team the command is in.\n\n##### Code Samples\n```go\nimport \"github.com/mattermost/mattermost-server/model\"\n\nClient := model.NewAPIv4Client(\"https://your-mattermost-url.com\")\nClient.Login(\"email@domain.com\", \"Password1\")\n\nnewCmd := &model.Command {\n  TeamId:       <TEAMID>,\n  URL:          \"http://nowhere.com\",\n  Method:       model.COMMAND_METHOD_POST,\n  Trigger:      \"trigger\",\n  AutoComplete: false,\n  Description:  \"Description\",\n  DisplayName:  \"Display name\",\n  IconURL:      \"IconURL\",\n  Username:     \"Username\"\n}\n\n// CreateCommand\ncreatedCmd, resp := Client.CreateCommand(newCmd)\n\n```\n",
       "authentication": {
         "token": "{{ mattermost_token }}",
         "type": "bearer"
@@ -3668,7 +3668,7 @@
       "_id": "__REQ_196__",
       "_type": "request",
       "name": "List commands for a team",
-      "description": "List commands for a team.\n##### Permissions\n`manage_slash_commands` if need list custom commands.\n",
+      "description": "List commands for a team.\n##### Permissions\n`manage_slash_commands` if need list custom commands.\n\n##### Code Samples\n```go\nimport \"github.com/mattermost/mattermost-server/model\"\n\nClient := model.NewAPIv4Client(\"https://your-mattermost-url.com\")\nClient.Login(\"email@domain.com\", \"Password1\")\n\n// ListCommands\n// The second parameter is to set if you want only custom commands (true) or defaults commands (false)\nlistCommands, resp := Client.ListCommands(<TEAMID>, true)\n\n```\n",
       "authentication": {
         "token": "{{ mattermost_token }}",
         "type": "bearer"
@@ -3685,7 +3685,7 @@
       "_id": "__REQ_197__",
       "_type": "request",
       "name": "List autocomplete commands",
-      "description": "List autocomplete commands in the team.\n##### Permissions\n`view_team` for the team.\n",
+      "description": "List autocomplete commands in the team.\n##### Permissions\n`view_team` for the team.\n\n##### Code Samples\n```go\nimport \"github.com/mattermost/mattermost-server/model\"\n\nClient := model.NewAPIv4Client(\"https://your-mattermost-url.com\")\nClient.Login(\"email@domain.com\", \"Password1\")\n\n// ListAutocompleteCommands\nlistCommands, resp := Client.ListAutocompleteCommands(<TEAMID>)\n\n```\n",
       "authentication": {
         "token": "{{ mattermost_token }}",
         "type": "bearer"
@@ -3702,7 +3702,7 @@
       "_id": "__REQ_198__",
       "_type": "request",
       "name": "Update a command",
-      "description": "Update a single command based on command id string and Command struct.\n##### Permissions\nMust have `manage_slash_commands` permission for the team the command is in.\n",
+      "description": "Update a single command based on command id string and Command struct.\n##### Permissions\nMust have `manage_slash_commands` permission for the team the command is in.\n\n##### Code Samples\n```go\nimport \"github.com/mattermost/mattermost-server/model\"\n\nClient := model.NewAPIv4Client(\"https://your-mattermost-url.com\")\nClient.Login(\"email@domain.com\", \"Password1\")\n\ncmdToUpdate := &model.Command{\n  CreatorId: <USERID>,\n  TeamId:    <TEAMID>,\n  URL:       \"<http://nowhere.com/change>\",\n  Trigger:   <NEWTRIGGERNAME>,\n  Id:        <COMMANDID>,\n}\n\n// UpdateCommand\nlistCommands, resp := Client.UpdateCommand(cmdToUpdate)\n\n```\n",
       "authentication": {
         "token": "{{ mattermost_token }}",
         "type": "bearer"
@@ -3719,7 +3719,7 @@
       "_id": "__REQ_199__",
       "_type": "request",
       "name": "Delete a command",
-      "description": "Delete a command based on command id string.\n##### Permissions\nMust have `manage_slash_commands` permission for the team the command is in.\n",
+      "description": "Delete a command based on command id string.\n##### Permissions\nMust have `manage_slash_commands` permission for the team the command is in.\n\n##### Code Samples\n```go\nimport \"github.com/mattermost/mattermost-server/model\"\n\nClient := model.NewAPIv4Client(\"https://your-mattermost-url.com\")\nClient.Login(\"email@domain.com\", \"Password1\")\n\n// DeleteCommand\nok, resp := Client.DeleteCommand(<COMMANDID>)\n\n```\n",
       "authentication": {
         "token": "{{ mattermost_token }}",
         "type": "bearer"
@@ -3736,7 +3736,7 @@
       "_id": "__REQ_200__",
       "_type": "request",
       "name": "Generate a new token",
-      "description": "Generate a new token for the command based on command id string.\n##### Permissions\nMust have `manage_slash_commands` permission for the team the command is in.\n",
+      "description": "Generate a new token for the command based on command id string.\n##### Permissions\nMust have `manage_slash_commands` permission for the team the command is in.\n\n##### Code Samples\n```go\nimport \"github.com/mattermost/mattermost-server/model\"\n\nClient := model.NewAPIv4Client(\"https://your-mattermost-url.com\")\nClient.Login(\"email@domain.com\", \"Password1\")\n\n// RegenCommandToken\nnewToken, resp := Client.RegenCommandToken(<COMMANDID>)\n\n```\n",
       "authentication": {
         "token": "{{ mattermost_token }}",
         "type": "bearer"
@@ -3753,7 +3753,7 @@
       "_id": "__REQ_201__",
       "_type": "request",
       "name": "Execute a command",
-      "description": "Execute a command on a team.\n##### Permissions\nMust have `use_slash_commands` permission for the team the command is in.\n",
+      "description": "Execute a command on a team.\n##### Permissions\nMust have `use_slash_commands` permission for the team the command is in.\n\n",
       "authentication": {
         "token": "{{ mattermost_token }}",
         "type": "bearer"
@@ -3773,7 +3773,7 @@
       "_id": "__REQ_202__",
       "_type": "request",
       "name": "Register OAuth app",
-      "description": "Register an OAuth 2.0 client application with Mattermost as the service provider.\n##### Permissions\nMust have `manage_oauth` permission.\n",
+      "description": "Register an OAuth 2.0 client application with Mattermost as the service provider.\n##### Permissions\nMust have `manage_oauth` permission.\n\n",
       "authentication": {
         "token": "{{ mattermost_token }}",
         "type": "bearer"
@@ -3793,7 +3793,7 @@
       "_id": "__REQ_203__",
       "_type": "request",
       "name": "Get OAuth apps",
-      "description": "Get a page of OAuth 2.0 client applications registered with Mattermost.\n##### Permissions\nWith `manage_oauth` permission, the apps registered by the logged in user are returned. With `manage_system_wide_oauth` permission, all apps regardless of creator are returned.\n",
+      "description": "Get a page of OAuth 2.0 client applications registered with Mattermost.\n##### Permissions\nWith `manage_oauth` permission, the apps registered by the logged in user are returned. With `manage_system_wide_oauth` permission, all apps regardless of creator are returned.\n\n",
       "authentication": {
         "token": "{{ mattermost_token }}",
         "type": "bearer"
@@ -3810,7 +3810,7 @@
       "_id": "__REQ_204__",
       "_type": "request",
       "name": "Get an OAuth app",
-      "description": "Get an OAuth 2.0 client application registered with Mattermost.\n##### Permissions\nIf app creator, must have `mange_oauth` permission otherwise `manage_system_wide_oauth` permission is required.\n",
+      "description": "Get an OAuth 2.0 client application registered with Mattermost.\n##### Permissions\nIf app creator, must have `mange_oauth` permission otherwise `manage_system_wide_oauth` permission is required.\n\n",
       "authentication": {
         "token": "{{ mattermost_token }}",
         "type": "bearer"
@@ -3827,7 +3827,7 @@
       "_id": "__REQ_205__",
       "_type": "request",
       "name": "Update an OAuth app",
-      "description": "Update an OAuth 2.0 client application based on OAuth struct.\n##### Permissions\nIf app creator, must have `mange_oauth` permission otherwise `manage_system_wide_oauth` permission is required.\n",
+      "description": "Update an OAuth 2.0 client application based on OAuth struct.\n##### Permissions\nIf app creator, must have `mange_oauth` permission otherwise `manage_system_wide_oauth` permission is required.\n\n##### Code Samples\n```go\nimport \"github.com/mattermost/platform/model\"\n\nClient := model.NewAPIv4Client(\"https://your-mattermost-url.com\")\nClient.Login(\"email@domain.com\", \"Password1\")\n\nappToUpdate := &model.OAuthApp{\n  Id:           <APP ID>,\n  Name:         <APP NAME>,\n  Description:  <APP DESCRIPTION>,\n  IconURL:      <URL TO APP ICON>,\n  CallbackUrls: [<CALLBACK URL1>, <CALLBACK URL2>],\n  Homepage:     <URL TO APP HOMEPAGE>,\n  IsTrusted:    <BOOLEAN>\n}\n\n// UpdateOAuthApp\nupdatedApp, resp := Client.UpdateOAuthApp(appToUpdate)\n\n```\n",
       "authentication": {
         "token": "{{ mattermost_token }}",
         "type": "bearer"
@@ -3847,7 +3847,7 @@
       "_id": "__REQ_206__",
       "_type": "request",
       "name": "Delete an OAuth app",
-      "description": "Delete and unregister an OAuth 2.0 client application \n##### Permissions\nIf app creator, must have `mange_oauth` permission otherwise `manage_system_wide_oauth` permission is required.\n",
+      "description": "Delete and unregister an OAuth 2.0 client application \n##### Permissions\nIf app creator, must have `mange_oauth` permission otherwise `manage_system_wide_oauth` permission is required.\n\n",
       "authentication": {
         "token": "{{ mattermost_token }}",
         "type": "bearer"
@@ -3864,7 +3864,7 @@
       "_id": "__REQ_207__",
       "_type": "request",
       "name": "Regenerate OAuth app secret",
-      "description": "Regenerate the client secret for an OAuth 2.0 client application registered with Mattermost.\n##### Permissions\nIf app creator, must have `mange_oauth` permission otherwise `manage_system_wide_oauth` permission is required.\n",
+      "description": "Regenerate the client secret for an OAuth 2.0 client application registered with Mattermost.\n##### Permissions\nIf app creator, must have `mange_oauth` permission otherwise `manage_system_wide_oauth` permission is required.\n\n",
       "authentication": {
         "token": "{{ mattermost_token }}",
         "type": "bearer"
@@ -3881,7 +3881,7 @@
       "_id": "__REQ_208__",
       "_type": "request",
       "name": "Get info on an OAuth app",
-      "description": "Get public information about an OAuth 2.0 client application registered with Mattermost. The application's client secret will be blanked out.\n##### Permissions\nMust be authenticated.\n",
+      "description": "Get public information about an OAuth 2.0 client application registered with Mattermost. The application's client secret will be blanked out.\n##### Permissions\nMust be authenticated.\n\n",
       "authentication": {
         "token": "{{ mattermost_token }}",
         "type": "bearer"
@@ -3898,7 +3898,7 @@
       "_id": "__REQ_209__",
       "_type": "request",
       "name": "Get authorized OAuth apps",
-      "description": "Get a page of OAuth 2.0 client applications authorized to access a user's account.\n##### Permissions\nMust be authenticated as the user or have `edit_other_users` permission.\n",
+      "description": "Get a page of OAuth 2.0 client applications authorized to access a user's account.\n##### Permissions\nMust be authenticated as the user or have `edit_other_users` permission.\n\n",
       "authentication": {
         "token": "{{ mattermost_token }}",
         "type": "bearer"
@@ -3915,7 +3915,7 @@
       "_id": "__REQ_210__",
       "_type": "request",
       "name": "Test Elasticsearch configuration",
-      "description": "Test the current Elasticsearch configuration to see if the Elasticsearch server can be contacted successfully.\nOptionally provide a configuration in the request body to test. If no valid configuration is present in the\nrequest body the current server configuration will be tested.\n\n__Minimum server version__: 4.1\n##### Permissions\nMust have `manage_system` permission.\n",
+      "description": "Test the current Elasticsearch configuration to see if the Elasticsearch server can be contacted successfully.\nOptionally provide a configuration in the request body to test. If no valid configuration is present in the\nrequest body the current server configuration will be tested.\n\n__Minimum server version__: 4.1\n##### Permissions\nMust have `manage_system` permission.\n\n",
       "authentication": {
         "token": "{{ mattermost_token }}",
         "type": "bearer"
@@ -3932,7 +3932,7 @@
       "_id": "__REQ_211__",
       "_type": "request",
       "name": "Purge all Elasticsearch indexes",
-      "description": "Deletes all Elasticsearch indexes and their contents. After calling this endpoint, it is\nnecessary to schedule a new Elasticsearch indexing job to repopulate the indexes.\n__Minimum server version__: 4.1\n##### Permissions\nMust have `manage_system` permission.\n",
+      "description": "Deletes all Elasticsearch indexes and their contents. After calling this endpoint, it is\nnecessary to schedule a new Elasticsearch indexing job to repopulate the indexes.\n__Minimum server version__: 4.1\n##### Permissions\nMust have `manage_system` permission.\n\n",
       "authentication": {
         "token": "{{ mattermost_token }}",
         "type": "bearer"
@@ -3949,7 +3949,7 @@
       "_id": "__REQ_212__",
       "_type": "request",
       "name": "Get the data retention policy details.",
-      "description": "Gets the current data retention policy details from the server, including what data should be purged and the cutoff times for each data type that should be purged.\n__Minimum server version__: 4.3\n##### Permissions\nRequires an active session but no other permissions.\n",
+      "description": "Gets the current data retention policy details from the server, including what data should be purged and the cutoff times for each data type that should be purged.\n__Minimum server version__: 4.3\n##### Permissions\nRequires an active session but no other permissions.\n\n",
       "authentication": {
         "token": "{{ mattermost_token }}",
         "type": "bearer"
@@ -3966,7 +3966,7 @@
       "_id": "__REQ_213__",
       "_type": "request",
       "name": "Upload plugin",
-      "description": "Upload a plugin compressed in a .tar.gz file. Plugins and plugin uploads must be enabled in the server's config settings.\n\n##### Permissions\nMust have `manage_system` permission.\n\n__Minimum server version__: 4.4\n",
+      "description": "Upload a plugin compressed in a .tar.gz file. Plugins and plugin uploads must be enabled in the server's config settings.\n\n##### Permissions\nMust have `manage_system` permission.\n\n__Minimum server version__: 4.4\n\n",
       "authentication": {
         "token": "{{ mattermost_token }}",
         "type": "bearer"
@@ -3983,7 +3983,7 @@
       "_id": "__REQ_214__",
       "_type": "request",
       "name": "Get plugins",
-      "description": "Get a list of inactive and a list of active plugin manifests. Plugins must be enabled in the server's config settings.\n\n##### Permissions\nMust have `manage_system` permission.\n\n__Minimum server version__: 4.4\n",
+      "description": "Get a list of inactive and a list of active plugin manifests. Plugins must be enabled in the server's config settings.\n\n##### Permissions\nMust have `manage_system` permission.\n\n__Minimum server version__: 4.4\n\n",
       "authentication": {
         "token": "{{ mattermost_token }}",
         "type": "bearer"
@@ -4000,7 +4000,7 @@
       "_id": "__REQ_215__",
       "_type": "request",
       "name": "Remove plugin",
-      "description": "Remove the plugin with the provided ID from the server. All plugin files are deleted. Plugins must be enabled in the server's config settings.\n\n##### Permissions\nMust have `manage_system` permission.\n\n__Minimum server version__: 4.4\n",
+      "description": "Remove the plugin with the provided ID from the server. All plugin files are deleted. Plugins must be enabled in the server's config settings.\n\n##### Permissions\nMust have `manage_system` permission.\n\n__Minimum server version__: 4.4\n\n",
       "authentication": {
         "token": "{{ mattermost_token }}",
         "type": "bearer"
@@ -4017,7 +4017,7 @@
       "_id": "__REQ_216__",
       "_type": "request",
       "name": "Enable plugin",
-      "description": "Enable a previously uploaded plugin. Plugins must be enabled in the server's config settings.\n\n##### Permissions\nMust have `manage_system` permission.\n\n__Minimum server version__: 4.4\n",
+      "description": "Enable a previously uploaded plugin. Plugins must be enabled in the server's config settings.\n\n##### Permissions\nMust have `manage_system` permission.\n\n__Minimum server version__: 4.4\n\n",
       "authentication": {
         "token": "{{ mattermost_token }}",
         "type": "bearer"
@@ -4034,7 +4034,7 @@
       "_id": "__REQ_217__",
       "_type": "request",
       "name": "Disable plugin",
-      "description": "Disable a previously enabled plugin. Plugins must be enabled in the server's config settings.\n\n##### Permissions\nMust have `manage_system` permission.\n\n__Minimum server version__: 4.4\n",
+      "description": "Disable a previously enabled plugin. Plugins must be enabled in the server's config settings.\n\n##### Permissions\nMust have `manage_system` permission.\n\n__Minimum server version__: 4.4\n\n",
       "authentication": {
         "token": "{{ mattermost_token }}",
         "type": "bearer"
@@ -4051,7 +4051,7 @@
       "_id": "__REQ_218__",
       "_type": "request",
       "name": "Get webapp plugins",
-      "description": "Get a list of web app plugins installed and activated on the server.\n\n##### Permissions\nNo permissions required.\n\n__Minimum server version__: 4.4\n",
+      "description": "Get a list of web app plugins installed and activated on the server.\n\n##### Permissions\nNo permissions required.\n\n__Minimum server version__: 4.4\n\n",
       "authentication": {
         "token": "{{ mattermost_token }}",
         "type": "bearer"
@@ -4068,7 +4068,7 @@
       "_id": "__REQ_219__",
       "_type": "request",
       "name": "Get a role",
-      "description": "Get a role from the provided role id.\n\n##### Permissions\nRequires an active session but no other permissions.\n\n__Minimum server version__: 4.9\n",
+      "description": "Get a role from the provided role id.\n\n##### Permissions\nRequires an active session but no other permissions.\n\n__Minimum server version__: 4.9\n\n##### Code Samples\n```go\nimport \"github.com/mattermost/mattermost-server/model\"\nClient := model.NewAPIv4Client(\"https://your-mattermost-url.com\")\nClient.Login(\"email@domain.com\", \"Password1\")\n\nrole, resp := Client.GetRole(<ROLEID>, \"\")\n\n```\n",
       "authentication": {
         "token": "{{ mattermost_token }}",
         "type": "bearer"
@@ -4085,7 +4085,7 @@
       "_id": "__REQ_220__",
       "_type": "request",
       "name": "Get a role",
-      "description": "Get a role from the provided role name.\n\n##### Permissions\nRequires an active session but no other permissions.\n\n__Minimum server version__: 4.9\n",
+      "description": "Get a role from the provided role name.\n\n##### Permissions\nRequires an active session but no other permissions.\n\n__Minimum server version__: 4.9\n\n##### Code Samples\n```go\nimport \"github.com/mattermost/mattermost-server/model\"\nClient := model.NewAPIv4Client(\"https://your-mattermost-url.com\")\nClient.Login(\"email@domain.com\", \"Password1\")\n\nrole, resp := Client.GetRoleByName(<ROLENAME>, \"\")\n\n```\n",
       "authentication": {
         "token": "{{ mattermost_token }}",
         "type": "bearer"
@@ -4102,7 +4102,7 @@
       "_id": "__REQ_221__",
       "_type": "request",
       "name": "Patch a role",
-      "description": "Partially update a role by providing only the fields you want to update. Omitted fields will not be updated. The fields that can be updated are defined in the request body, all other provided fields will be ignored.\n\n##### Permissions\n`manage_system` permission is required.\n\n__Minimum server version__: 4.9\n",
+      "description": "Partially update a role by providing only the fields you want to update. Omitted fields will not be updated. The fields that can be updated are defined in the request body, all other provided fields will be ignored.\n\n##### Permissions\n`manage_system` permission is required.\n\n__Minimum server version__: 4.9\n\n",
       "authentication": {
         "token": "{{ mattermost_token }}",
         "type": "bearer"
@@ -4119,7 +4119,7 @@
       "_id": "__REQ_222__",
       "_type": "request",
       "name": "Get a list of roles by name",
-      "description": "Get a list of roles from their names.\n\n##### Permissions\nRequires an active session but no other permissions.\n\n__Minimum server version__: 4.9\n",
+      "description": "Get a list of roles from their names.\n\n##### Permissions\nRequires an active session but no other permissions.\n\n__Minimum server version__: 4.9\n\n##### Code Samples\n```go\nimport \"github.com/mattermost/mattermost-server/model\"\nClient := model.NewAPIv4Client(\"https://your-mattermost-url.com\")\nClient.Login(\"email@domain.com\", \"Password1\")\n\nroleNames := []string{<NAME OF ROLE1>, <NAME OF ROLE2>, ...}\n\nroles, resp := Client.GetRolesByNames(roleNames)\n\n```\n",
       "authentication": {
         "token": "{{ mattermost_token }}",
         "type": "bearer"
@@ -4136,7 +4136,7 @@
       "_id": "__REQ_223__",
       "_type": "request",
       "name": "Get the schemes.",
-      "description": "Get a page of schemes. Use the query parameters to modify the behaviour of this endpoint.\n\n##### Permissions\nMust have `manage_system` permission.\n\n__Minimum server version__: 5.0\n",
+      "description": "Get a page of schemes. Use the query parameters to modify the behaviour of this endpoint.\n\n##### Permissions\nMust have `manage_system` permission.\n\n__Minimum server version__: 5.0\n\n",
       "authentication": {
         "token": "{{ mattermost_token }}",
         "type": "bearer"
@@ -4153,7 +4153,7 @@
       "_id": "__REQ_224__",
       "_type": "request",
       "name": "Create a scheme",
-      "description": "Create a new scheme.\n\n##### Permissions\nMust have `manage_system` permission.\n\n__Minimum server version__: 5.0\n",
+      "description": "Create a new scheme.\n\n##### Permissions\nMust have `manage_system` permission.\n\n__Minimum server version__: 5.0\n\n",
       "authentication": {
         "token": "{{ mattermost_token }}",
         "type": "bearer"
@@ -4170,7 +4170,7 @@
       "_id": "__REQ_225__",
       "_type": "request",
       "name": "Get a scheme",
-      "description": "Get a scheme from the provided scheme id.\n\n##### Permissions\nMust have `manage_system` permission.\n\n__Minimum server version__: 5.0\n",
+      "description": "Get a scheme from the provided scheme id.\n\n##### Permissions\nMust have `manage_system` permission.\n\n__Minimum server version__: 5.0\n\n##### Code Samples\n```go\nimport \"github.com/mattermost/mattermost-server/model\"\nClient := model.NewAPIv4Client(\"https://your-mattermost-url.com\")\nClient.Login(\"email@domain.com\", \"Password1\")\n\nscheme, resp := Client.GetScheme(<SCHEMEID>, \"\")\n\n```\n",
       "authentication": {
         "token": "{{ mattermost_token }}",
         "type": "bearer"
@@ -4187,7 +4187,7 @@
       "_id": "__REQ_226__",
       "_type": "request",
       "name": "Delete a scheme",
-      "description": "Soft deletes a scheme, by marking the scheme as deleted in the database.\n\n##### Permissions\nMust have `manage_system` permission.\n\n__Minimum server version__: 5.0\n",
+      "description": "Soft deletes a scheme, by marking the scheme as deleted in the database.\n\n##### Permissions\nMust have `manage_system` permission.\n\n__Minimum server version__: 5.0\n\n",
       "authentication": {
         "token": "{{ mattermost_token }}",
         "type": "bearer"
@@ -4204,7 +4204,7 @@
       "_id": "__REQ_227__",
       "_type": "request",
       "name": "Patch a scheme",
-      "description": "Partially update a scheme by providing only the fields you want to update. Omitted fields will not be updated. The fields that can be updated are defined in the request body, all other provided fields will be ignored.\n\n##### Permissions\n`manage_system` permission is required.\n\n__Minimum server version__: 5.0\n",
+      "description": "Partially update a scheme by providing only the fields you want to update. Omitted fields will not be updated. The fields that can be updated are defined in the request body, all other provided fields will be ignored.\n\n##### Permissions\n`manage_system` permission is required.\n\n__Minimum server version__: 5.0\n\n",
       "authentication": {
         "token": "{{ mattermost_token }}",
         "type": "bearer"
@@ -4221,7 +4221,7 @@
       "_id": "__REQ_228__",
       "_type": "request",
       "name": "Get a page of teams which use this scheme.",
-      "description": "Get a page of teams which use this scheme. The provided Scheme ID should be for a Team-scoped Scheme.\nUse the query parameters to modify the behaviour of this endpoint.\n\n##### Permissions\n`manage_system` permission is required.\n\n__Minimum server version__: 5.0\n",
+      "description": "Get a page of teams which use this scheme. The provided Scheme ID should be for a Team-scoped Scheme.\nUse the query parameters to modify the behaviour of this endpoint.\n\n##### Permissions\n`manage_system` permission is required.\n\n__Minimum server version__: 5.0\n\n",
       "authentication": {
         "token": "{{ mattermost_token }}",
         "type": "bearer"
@@ -4238,7 +4238,7 @@
       "_id": "__REQ_229__",
       "_type": "request",
       "name": "Get a page of channels which use this scheme.",
-      "description": "Get a page of channels which use this scheme. The provided Scheme ID should be for a Channel-scoped Scheme.\nUse the query parameters to modify the behaviour of this endpoint.\n\n##### Permissions\n`manage_system` permission is required.\n\n__Minimum server version__: 5.0\n",
+      "description": "Get a page of channels which use this scheme. The provided Scheme ID should be for a Channel-scoped Scheme.\nUse the query parameters to modify the behaviour of this endpoint.\n\n##### Permissions\n`manage_system` permission is required.\n\n__Minimum server version__: 5.0\n\n",
       "authentication": {
         "token": "{{ mattermost_token }}",
         "type": "bearer"
@@ -4255,7 +4255,7 @@
       "_id": "__REQ_230__",
       "_type": "request",
       "name": "Get open graph metadata for url",
-      "description": "Get Open Graph Metadata for a specif URL. Use the Open Graph protocol to get some generic metadata about a URL. Used for creating link previews.\n\n__Minimum server version__: 3.10\n\n##### Permissions\nNo permission required but must be logged in.\n",
+      "description": "Get Open Graph Metadata for a specif URL. Use the Open Graph protocol to get some generic metadata about a URL. Used for creating link previews.\n\n__Minimum server version__: 3.10\n\n##### Permissions\nNo permission required but must be logged in.\n\n",
       "authentication": {
         "token": "{{ mattermost_token }}",
         "type": "bearer"
@@ -4272,7 +4272,7 @@
       "_id": "__REQ_231__",
       "_type": "request",
       "name": "Create a reaction",
-      "description": "Create a reaction.\n##### Permissions\nMust have `read_channel` permission for the channel the post is in.\n",
+      "description": "Create a reaction.\n##### Permissions\nMust have `read_channel` permission for the channel the post is in.\n\n",
       "authentication": {
         "token": "{{ mattermost_token }}",
         "type": "bearer"
@@ -4289,7 +4289,7 @@
       "_id": "__REQ_232__",
       "_type": "request",
       "name": "Get a list of reactions to a post",
-      "description": "Get a list of reactions made by all users to a given post.\n##### Permissions\nMust have `read_channel` permission for the channel the post is in.\n",
+      "description": "Get a list of reactions made by all users to a given post.\n##### Permissions\nMust have `read_channel` permission for the channel the post is in.\n\n",
       "authentication": {
         "token": "{{ mattermost_token }}",
         "type": "bearer"
@@ -4306,7 +4306,7 @@
       "_id": "__REQ_233__",
       "_type": "request",
       "name": "Remove a reaction from a post",
-      "description": "Deletes a reaction made by a user from the given post.\n##### Permissions\nMust be user or have `manage_system` permission.\n",
+      "description": "Deletes a reaction made by a user from the given post.\n##### Permissions\nMust be user or have `manage_system` permission.\n\n",
       "authentication": {
         "token": "{{ mattermost_token }}",
         "type": "bearer"
@@ -4323,7 +4323,7 @@
       "_id": "__REQ_234__",
       "_type": "request",
       "name": "Bulk get the reaction for posts",
-      "description": "Get a list of reactions made by all users to a given post.\n##### Permissions\nMust have `read_channel` permission for the channel the post is in.\n\n__Minimum server version__: 5.8\n",
+      "description": "Get a list of reactions made by all users to a given post.\n##### Permissions\nMust have `read_channel` permission for the channel the post is in.\n\n__Minimum server version__: 5.8\n\n",
       "authentication": {
         "token": "{{ mattermost_token }}",
         "type": "bearer"
@@ -4340,7 +4340,7 @@
       "_id": "__REQ_235__",
       "_type": "request",
       "name": "Open a dialog",
-      "description": "Open an interactive dialog using a trigger ID provided by a slash command, or some other action payload. See https://docs.mattermost.com/developer/interactive-dialogs.html for more information on interactive dialogs.\n__Minimum server version: 5.6__\n",
+      "description": "Open an interactive dialog using a trigger ID provided by a slash command, or some other action payload. See https://docs.mattermost.com/developer/interactive-dialogs.html for more information on interactive dialogs.\n__Minimum server version: 5.6__\n\n",
       "authentication": {
         "token": "{{ mattermost_token }}",
         "type": "bearer"
@@ -4360,7 +4360,7 @@
       "_id": "__REQ_236__",
       "_type": "request",
       "name": "Submit a dialog",
-      "description": "Endpoint used by the Mattermost clients to submit a dialog. See https://docs.mattermost.com/developer/interactive-dialogs.html for more information on interactive dialogs.\n__Minimum server version: 5.6__\n",
+      "description": "Endpoint used by the Mattermost clients to submit a dialog. See https://docs.mattermost.com/developer/interactive-dialogs.html for more information on interactive dialogs.\n__Minimum server version: 5.6__\n\n",
       "authentication": {
         "token": "{{ mattermost_token }}",
         "type": "bearer"

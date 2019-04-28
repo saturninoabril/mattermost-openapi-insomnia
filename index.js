@@ -73,11 +73,16 @@ function generateJsonApi(routes) {
             const id = `__REQ_${reqCounter}__`;
 
             perRoute.tags.forEach((tag) => {
+                let codeSamples = '';
+                if (perRoute['x-code-samples']) {
+                    codeSamples = generateCodeSamples(perRoute['x-code-samples']);
+                }
+
                 resources.push({
                     _id: id,
                     _type: 'request',
                     name: perRoute.summary,
-                    description: `${perRoute.description}`,
+                    description: `${perRoute.description}\n${codeSamples}`,
                     authentication: {
                         token: '{{ mattermost_token }}',
                         type: 'bearer',
@@ -99,7 +104,7 @@ function generateJsonApi(routes) {
         parentId: '__WORKSPACE_ID__',
         _id: '__FLD_1__',
         _type: 'request_group',
-        name: 'Mattermost REST v4 API',
+        name: `Mattermost REST v4 API (${meta.version})`,
     };
 
     const environment = {
@@ -171,6 +176,18 @@ function compareStrings(a, b) {
     }
 
     return 0;
+}
+
+function generateCodeSamples(codeSamples) {
+    let out = '##### Code Samples'
+    codeSamples.forEach((c) => {
+        const lang = c.lang.toLowerCase() === 'curl' ? 'bash' : c.lang.toLowerCase();
+        out += "\n```" + lang + "\n";
+        out += c.source + "\n";
+        out += "```\n";
+    });
+
+    return out;
 }
 
 function build() {
