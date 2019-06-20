@@ -1,7 +1,7 @@
 {
   "name": "mattermost-openapi-insomnia",
   "author": "Saturnino Abril",
-  "version": "1.0.0",
+  "version": "2019.06.17",
   "description": "Mattermost Open API for Insomnia",
   "license": "Apache 2.0",
   "main": "index.js",
